@@ -1,0 +1,39 @@
+{
+  "name": "browser-run",
+  "description": "Turns a stream of JavaScript into a stream of console output it creates in a real browser environment.",
+  "version": "0.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/juliangruber/browser-run.git"
+  },
+  "homepage": "https://github.com/juliangruber/browser-run",
+  "main": "index.js",
+  "scripts": {
+    "test": "tap test/*.js"
+  },
+  "dependencies": {
+    "duplexer": "0.0.3",
+    "through": "~2.2.7",
+    "browserify": "~2.7.2",
+    "phantomjs": "1.8.1-3",
+    "optimist": "~0.3.5",
+    "xhr-write-stream": "~0.1.2"
+  },
+  "devDependencies": {
+    "tap": "*"
+  },
+  "keywords": [
+    "browser",
+    "stream",
+    "phantomjs",
+    "test",
+    "headless",
+    "duplex"
+  ],
+  "author": {
+    "name": "Julian Gruber",
+    "email": "mail@juliangruber.com",
+    "url": "http://juliangruber.com"
+  },
+  "license": "MIT"
+}

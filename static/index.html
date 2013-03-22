@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="/reporter.js"></script>
+  </head>
+  <body>
+    <script>
+      document.write(
+        '<' + 'script src="/bundle.js?' + Math.random().toString(16).slice(2) +
+        '"><' + '/script' + '>'
+      )
+    </script>
+  </body>
+</html>
