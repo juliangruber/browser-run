@@ -1,7 +1,7 @@
 
 # browser-run
 
-Duplex stream that executes JavaScript it receives in a real browser and
+Transform stream that executes JavaScript it receives in a real browser and
 outputs console output.
 
 [![Build Status](https://travis-ci.org/juliangruber/browser-run.png?branch=master)](https://travis-ci.org/juliangruber/browser-run)

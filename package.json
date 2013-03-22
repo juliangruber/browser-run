@@ -1,6 +1,6 @@
 {
   "name": "browser-run",
-  "description": "Duplex stream that executes JavaScript it receives in a real browser and outputs console output",
+  "description": "Transform stream that executes JavaScript it receives in a real browser and outputs console output",
   "version": "0.0.2",
   "repository": {
     "type": "git",
