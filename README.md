@@ -1,14 +1,14 @@
 
 # browser-run
 
-Write JavaScript to it and receive the console output of that code run in a
-real browser environment.
+Duplex stream that executes JavaScript it receives in a real browser and
+outputs console output.
 
 ## Usage
 
 ```bash
-$ echo "console.log('foo')" | browser-run
-# => foo
+$ echo "console.log(document.location)" | browser-run
+# => http://localhost:53227/
 ```
 
 Or use `browser-run` programmatically:
