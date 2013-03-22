@@ -1,13 +1,16 @@
 {
   "name": "browser-run",
   "description": "Turns a stream of JavaScript into a stream of console output it creates in a real browser environment.",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "repository": {
     "type": "git",
     "url": "git://github.com/juliangruber/browser-run.git"
   },
   "homepage": "https://github.com/juliangruber/browser-run",
   "main": "index.js",
+  "bin": {
+    "browser-run": "./bin/bin.js"
+  },
   "scripts": {
     "test": "tap test/*.js"
   },
