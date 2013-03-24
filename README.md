@@ -16,20 +16,9 @@ Or use `browser-run` programmatically:
 ```js
 var run = require('browser-run');
 
-// create a browser
 var browser = run();
-
-// console output comes in
-browser.on('data', function (data) {
-  console.log(data);
-  // => foo
-  // when finished, call stop()
-  browser.stop();
-});
-
-// write some javascript to it
-browser.write('console.log("foo")');
-// close the input stream
+browser.pipe(process.stdout);
+browser.write('console.log(document.location)');
 browser.end();
 ```
 
