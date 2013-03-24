@@ -1,8 +1,6 @@
-
 # browser-run
 
-Transform stream that executes JavaScript it receives in a real browser and
-outputs console output.
+The easiest way of running code in a browser environment.
 
 [![Build Status](https://travis-ci.org/juliangruber/browser-run.png?branch=master)](https://travis-ci.org/juliangruber/browser-run)
 
