@@ -43,17 +43,9 @@ or
 
 ```js
 var browserify = require('browserify');
-var run = require('browser-run');
+var browser = require('browser-run');
 
-var browser = run();
-browserify('main.js').bundle().pipe(browser);
-
-browser.on('data', function (data) {
-  console.log('data', data);
-  if (finished) {
-    browser.stop();
-  }
-});
+browserify('main.js').bundle().pipe(browser()).pipe(process.stdout);
 ```
 
 ## CLI
