@@ -6,19 +6,19 @@ var duplex = require('duplexer');
 var browserify = require('browserify');
 var fs = require('fs');
 var xws = require('xhr-write-stream')();
+var enstore = require('enstore');
 
 module.exports = runner;
 
 function runner (port) {
-  var bundle = through().pause();
+  var bundle = enstore();
   var output = through();
-  var dpl = duplex(bundle, output);
+  var dpl = duplex(bundle.createWriteStream(), output);
 
   var server = http.createServer(function (req, res) {
     if (/^\/bundle\.js/.test(req.url)) {
       res.setHeader('content-type', 'application/javascript');
-      bundle.pipe(res);
-      bundle.resume();
+      bundle.createReadStream().pipe(res);
       return;
     }
     if (req.url == '/xws') {
