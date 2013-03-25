@@ -1,5 +1,4 @@
 ;(function () {
-  // TODO: can every browser do this?
   if (!/Phantom/.test(window.navigator.userAgent)) {
     window.onerror = function (err) {
       console.error(err);
