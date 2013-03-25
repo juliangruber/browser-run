@@ -6,7 +6,7 @@ test('stream', function (t) {
 
   browser.on('data', function (data) {
     browser.stop();
-    t.assert(data, 'foo');
+    t.equal(data, 'foo\n');
     t.end();
   });
 

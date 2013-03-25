@@ -5,7 +5,7 @@ test('spawn', function (t) {
   var ps = spawn(__dirname + '/../bin/bin.js');
   
   ps.stdout.on('data', function (data) {
-    t.equal(data.toString(), 'foo');
+    t.equal(data.toString(), 'foo\n');
     ps.kill();
     t.end();
   });
