@@ -53,7 +53,7 @@ function runner (port) {
       ps.stdout.pipe(process.stdout, { end : false });
       ps.stderr.pipe(process.stderr, { end : false });
 
-      process.on('exit', ps.kill.bind(ps));
+      process.on('exit', ps.kill.bind(ps, null));
     });
   }
 
