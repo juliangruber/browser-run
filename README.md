@@ -7,7 +7,7 @@ The easiest way of running code in a browser environment.
 ## Usage
 
 ```bash
-$ echo "console.log("Hey there from " + document.location)" | browser-run
+$ echo "console.log('Hey there from ' + document.location)" | browser-run
 Hey there from http://localhost:53227/
 ```
 
