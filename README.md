@@ -7,8 +7,8 @@ The easiest way of running code in a browser environment.
 ## Usage
 
 ```bash
-$ echo "console.log(document.location)" | browser-run
-# => http://localhost:53227/
+$ echo "console.log("Hey there from " + document.location)" | browser-run
+Hey there from http://localhost:53227/
 ```
 
 Or use `browser-run` programmatically:
@@ -46,21 +46,27 @@ Write code to stdin and receive console output on stdout.
 Usage: browser-run [OPTIONS]
 
 Options:
-  --port, -p  Start listening on that port
-  --help, -h  Print help
+  --browser, -b  Browser to use. Available if installed: chrome, firefox, ie, phantom, safari  [default: "phantom"]
+  --port, -p     Starts listening on that port and waits for you to open a browser
+  --help, -h     Print help
 
 ```
 
 ## API
 
-### run([port])
+### run([opts])
 
 Returns a duplex stream and starts a webserver.
 
-If you don't specify `port` a random port will be chosen and **phantomjs** will be pointed at
-the server for `headless` testing.
+`opts` can be:
 
-If you speficy `port` you will have to point a browser to `"http://localhost/" + port`.
+* `port`: If speficied, no browser will be started, so you can point one yourself to `http://localhost/<port>`
+* `browser`: Browser to use. Defaults to `phantom`. Available if installed:
+  * `chrome`
+  * `firefox`
+  * `ie`
+  * `phantom`
+  * `safari`
 
 ### run#stop()
 
