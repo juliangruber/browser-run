@@ -1,7 +1,6 @@
 var http = require('http');
 var spawn = require('child_process').spawn;
 var through = require('through');
-var phantomjs = require('phantomjs').path;
 var duplex = require('duplexer');
 var browserify = require('browserify');
 var fs = require('fs');
