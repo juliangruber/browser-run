@@ -7,13 +7,16 @@ var browserify = require('browserify');
 var fs = require('fs');
 var xws = require('xhr-write-stream')();
 var enstore = require('enstore');
+var launcher = require('browser-launcher');
 
-module.exports = runner;
-
-function runner (opts) {
+module.exports = function (opts) {
   if (!opts) opts = {};
   if ('number' == typeof opts) opts = { port: opts };
+  if (!opts.browser) opts.browser = 'phantom';
+  return runner(opts);
+};
 
+function runner (opts) {
   var bundle = enstore();
   var output = through();
   var dpl = duplex(bundle.createWriteStream(), output);
@@ -47,16 +50,27 @@ function runner (opts) {
   var ps;
 
   if (opts.port) {
-    server.listen(port);
+    server.listen(opts.port);
   } else {
     server.listen(function () {
-      port = server.address().port;
+      var port = server.address().port;
 
-      ps = spawn(phantomjs, [__dirname + '/script/run.js', port]);
-      ps.stdout.pipe(process.stdout, { end : false });
-      ps.stderr.pipe(process.stderr, { end : false });
+      launcher(function (err, launch) {
+        if (err) console.error(err), process.exit(1);
 
-      process.on('exit', ps.kill.bind(ps, null));
+        launch('http://localhost:' + port, {
+          headless: true,
+          browser: opts.browser
+        }, function (err, _ps) {
+          if (err) console.error(err), process.exit(1);
+
+          ps = _ps;
+          ps.stdout.pipe(process.stdout, { end : false });
+          ps.stderr.pipe(process.stderr, { end : false });
+
+          process.on('exit', ps.kill.bind(ps, null));
+        });
+      });
     });
   }
 

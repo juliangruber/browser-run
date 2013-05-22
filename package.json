@@ -20,8 +20,8 @@
     "optimist": "~0.3.5",
     "xhr-write-stream": "~0.1.2",
     "enstore": "~0.0.1",
-    "phantomjs": "~1.9.0-3",
-    "browserify": "~2.13.2"
+    "browserify": "~2.13.2",
+    "browser-launcher": "git://github.com/juliangruber/browser-launcher#39dabda61cadfbece28698fbf5a1f647b32382ee"
   },
   "devDependencies": {
     "tap": "*"

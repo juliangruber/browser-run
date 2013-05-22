@@ -10,8 +10,14 @@ var argv = optimist
     'Usage: $0 [OPTIONS]'
   )
 
-  .describe('port', 'Start listening on that port')
+  .describe('browser', 'Browser to use. Available if installed: '
+      + 'chrome, firefox, ie, phantom, safari')
+  .alias('browser', 'b')
+  .default('browser', 'phantom')
+
+  .describe('port', 'Starts listening on that port and waits for you to open a browser')
   .alias('p', 'port')
+
 
   .describe('help', 'Print help')
   .alias('h', 'help')
@@ -20,4 +26,6 @@ var argv = optimist
 
 if (argv.help) return optimist.showHelp();
 
-process.stdin.pipe(run(argv.port)).pipe(process.stdout);
+process.stdin
+  .pipe(run(argv))
+  .pipe(process.stdout);
