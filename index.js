@@ -10,7 +10,10 @@ var enstore = require('enstore');
 
 module.exports = runner;
 
-function runner (port) {
+function runner (opts) {
+  if (!opts) opts = {};
+  if ('number' == typeof opts) opts = { port: opts };
+
   var bundle = enstore();
   var output = through();
   var dpl = duplex(bundle.createWriteStream(), output);
@@ -43,7 +46,7 @@ function runner (port) {
 
   var ps;
 
-  if (port) {
+  if (opts.port) {
     server.listen(port);
   } else {
     server.listen(function () {
