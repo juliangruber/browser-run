@@ -10,14 +10,14 @@
 
   var console = window.console || {};
   var methods = ['log', 'error', 'warn', 'dir', 'debug', 'info', 'trace'];
-  for (var i = 0; i < methods.length; i++) {
-    var old = console[methods[i]];
-    console[methods[i]] = function (msg) {
+  for (var i = 0; i < methods.length; i++) (function (method) {
+    var old = console[method];
+    console[method] = function (msg) {
       ws.write(msg + '\n');
       if (old) old.apply(console, arguments);
       if (msg instanceof Error && typeof JSON != 'undefined') {
         ws.write(JSON.stringify(msg) + '\n'); 
       }
     }
-  }
+  })(methods[i]);
 })();
