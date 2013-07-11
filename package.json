@@ -1,7 +1,7 @@
 {
   "name": "browser-run",
   "description": "Transform stream that executes JavaScript it receives in a real browser and outputs console output",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "repository": {
     "type": "git",
     "url": "git://github.com/juliangruber/browser-run.git"
@@ -21,7 +21,7 @@
     "xhr-write-stream": "~0.1.2",
     "enstore": "~0.0.1",
     "browserify": "~2.13.2",
-    "browser-launcher": "git://github.com/juliangruber/browser-launcher.git#be259392952c246c937cc2c46c86fa74ecf37ef0"
+    "browser-launcher": "~0.3.4"
   },
   "devDependencies": {
     "tap": "*"
