@@ -5,8 +5,9 @@
     }
   }
 
-  var xws = require('xhr-write-stream');
-  var ws = xws('/xws');
+  var xws = require('xhr-write-stream')('/xws');
+  var ws = require('utf8-stream')();
+  ws.pipe(xws);
 
   var console = window.console || {};
   var methods = ['log', 'error', 'warn', 'dir', 'debug', 'info', 'trace'];

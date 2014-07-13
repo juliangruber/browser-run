@@ -15,13 +15,14 @@
     "test": "tap test/*.js"
   },
   "dependencies": {
-    "duplexer": "0.0.3",
-    "through": "~2.2.7",
-    "optimist": "~0.3.5",
-    "xhr-write-stream": "~0.1.2",
-    "enstore": "~0.0.1",
+    "browser-launcher": "~0.3.4",
     "browserify": "~2.13.2",
-    "browser-launcher": "~0.3.4"
+    "duplexer": "0.0.3",
+    "enstore": "~0.0.1",
+    "optimist": "~0.3.5",
+    "through": "~2.2.7",
+    "utf8-stream": "0.0.0",
+    "xhr-write-stream": "~0.1.2"
   },
   "devDependencies": {
     "tap": "*"
