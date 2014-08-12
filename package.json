@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "browser-launcher": "~0.3.4",
-    "browserify": "~2.13.2",
+    "browserify": "~5.9.3",
     "duplexer": "0.0.3",
     "enstore": "~0.0.1",
     "optimist": "~0.3.5",
