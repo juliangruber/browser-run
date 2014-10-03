@@ -2,7 +2,7 @@ var test = require('tap').test;
 var run = require('..');
 
 test('stream', function (t) {
-  var browser = run();
+  var browser = run({browser: 'chrome'});
 
   browser.on('data', function (data) {
     browser.stop();

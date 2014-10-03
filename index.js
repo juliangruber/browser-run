@@ -6,7 +6,7 @@ var browserify = require('browserify');
 var fs = require('fs');
 var xws = require('xhr-write-stream')();
 var enstore = require('enstore');
-var launcher = require('browser-launcher');
+var launcher = require('browser-launcher2');
 
 module.exports = function (opts) {
   if (!opts) opts = {};
@@ -28,7 +28,7 @@ function runner (opts) {
     }
     if (req.url == '/xws') {
       req.pipe(xws(function (stream) {
-        stream.pipe(output); 
+        stream.pipe(output);
       }));
       return req.on('end', res.end.bind(res));
     }
@@ -64,19 +64,27 @@ function runner (opts) {
           if (err) console.error(err), process.exit(1);
 
           ps = _ps;
-          ps.stdout.pipe(process.stdout, { end : false });
-          ps.stderr.pipe(process.stderr, { end : false });
-
-          process.on('exit', ps.kill.bind(ps, null));
+          ps.stdout.pipe(process.stdout);
+          ps.stderr.pipe(process.stderr);
+          process.on('SIGTERM', function() {
+            setTimeout(function() {
+              ps.stop(function() {
+                process.exit()
+              });
+            }, 1000)
+          });
         });
       });
     });
   }
 
-  dpl.stop = function () {
+  dpl.stop = function (fn) {
     server.close();
-    if (ps) ps.kill();
+    if (ps) ps.stop(fn);
+    else fn(null, true);
   }
 
   return dpl;
 }
+
+

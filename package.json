@@ -15,7 +15,7 @@
     "test": "tap test/*.js"
   },
   "dependencies": {
-    "browser-launcher": "~0.3.4",
+    "browser-launcher2": "~0.4.3",
     "browserify": "~5.9.3",
     "duplexer": "0.0.3",
     "enstore": "~0.0.1",
