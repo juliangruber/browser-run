@@ -11,7 +11,7 @@ var launcher = require('browser-launcher2');
 module.exports = function (opts) {
   if (!opts) opts = {};
   if ('number' == typeof opts) opts = { port: opts };
-  if (!opts.browser) opts.browser = 'phantom';
+  if (!opts.browser) opts.browser = 'phantomjs';
   return runner(opts);
 };
 
