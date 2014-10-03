@@ -2,7 +2,7 @@ var test = require('tap').test;
 var spawn = require('child_process').spawn;
 
 test('spawn', function (t) {
-  var ps = spawn(__dirname + '/../bin/bin.js', ['--browser', 'chrome']);
+  var ps = spawn(__dirname + '/../bin/bin.js');
 
   ps.stdout.on('data', function (data) {
     t.equal(data.toString(), 'foo\n');
