@@ -43,6 +43,7 @@ function runner (opts) {
       return;
     }
 
+    res.setHeader('content-type', 'text/html');
     res.end('not supported');
   });
 
