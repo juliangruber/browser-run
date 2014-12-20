@@ -12,6 +12,7 @@ module.exports = function (opts) {
   if (!opts) opts = {};
   if ('number' == typeof opts) opts = { port: opts };
   if (!opts.browser) opts.browser = 'phantom';
+  opts.static = !!opts.static;
   return runner(opts);
 };
 
@@ -21,6 +22,7 @@ function runner (opts) {
   var dpl = duplex(bundle.createWriteStream(), output);
 
   var server = http.createServer(function (req, res) {
+
     if (/^\/bundle\.js/.test(req.url)) {
       res.setHeader('content-type', 'application/javascript');
       bundle.createReadStream().pipe(res);
@@ -40,6 +42,17 @@ function runner (opts) {
     }
     if (req.url == '/') {
       fs.createReadStream(__dirname + '/static/index.html').pipe(res);
+      return;
+    }
+
+    if ( opts.static ) {
+      fs.exists( process.cwd() + req.url, function( exist ) {
+        if ( exist ) {
+          fs.createReadStream( process.cwd() + req.url ).pipe( res );
+          return;
+        }
+        res.end('not supported');
+      } );
       return;
     }
 
