@@ -7,12 +7,12 @@ var fs = require('fs');
 var xws = require('xhr-write-stream')();
 var enstore = require('enstore');
 var launcher = require('browser-launcher');
+var ecstatic = require('ecstatic');
 
 module.exports = function (opts) {
   if (!opts) opts = {};
   if ('number' == typeof opts) opts = { port: opts };
   if (!opts.browser) opts.browser = 'phantom';
-  opts.static = !!opts.static;
   return runner(opts);
 };
 
@@ -46,13 +46,7 @@ function runner (opts) {
     }
 
     if ( opts.static ) {
-      fs.exists( process.cwd() + req.url, function( exist ) {
-        if ( exist ) {
-          fs.createReadStream( process.cwd() + req.url ).pipe( res );
-          return;
-        }
-        res.end('not supported');
-      } );
+      ecstatic({ root: opts.static })( req, res );
       return;
     }
 

@@ -18,7 +18,7 @@ var argv = optimist
   .describe('port', 'Starts listening on that port and waits for you to open a browser')
   .alias('p', 'port')
 
-  .describe('static', 'Allows you to serve static assets from the directory the test command is ran from')
+  .describe('static', 'Serve static assets from directory specified in static option')
   .alias('s', 'static')
 
 
