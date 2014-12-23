@@ -44,9 +44,8 @@ function runner (opts) {
       fs.createReadStream(__dirname + '/static/index.html').pipe(res);
       return;
     }
-
-    if ( opts.static ) {
-      ecstatic({ root: opts.static })( req, res );
+    if (opts.static) {
+      ecstatic({ root: opts.static })(req, res);
       return;
     }
 
