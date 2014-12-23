@@ -7,6 +7,7 @@ var fs = require('fs');
 var xws = require('xhr-write-stream')();
 var enstore = require('enstore');
 var launcher = require('browser-launcher');
+var ecstatic = require('ecstatic');
 
 module.exports = function (opts) {
   if (!opts) opts = {};
@@ -21,6 +22,7 @@ function runner (opts) {
   var dpl = duplex(bundle.createWriteStream(), output);
 
   var server = http.createServer(function (req, res) {
+
     if (/^\/bundle\.js/.test(req.url)) {
       res.setHeader('content-type', 'application/javascript');
       bundle.createReadStream().pipe(res);
@@ -40,6 +42,11 @@ function runner (opts) {
     }
     if (req.url == '/') {
       fs.createReadStream(__dirname + '/static/index.html').pipe(res);
+      return;
+    }
+
+    if ( opts.static ) {
+      ecstatic({ root: opts.static })( req, res );
       return;
     }
 
