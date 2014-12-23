@@ -46,6 +46,7 @@ Usage: browser-run [OPTIONS]
 Options:
   --browser, -b  Browser to use. Available if installed: chrome, firefox, ie, phantom, safari  [default: "phantom"]
   --port, -p     Starts listening on that port and waits for you to open a browser
+  --static, -s   Serve static assets from this directory
   --help, -h     Print help
 
 ```
@@ -65,6 +66,7 @@ Returns a duplex stream and starts a webserver.
   * `ie`
   * `phantom`
   * `safari`
+* `static`: Serve static files from this directory
 
 ### run#stop()
 
