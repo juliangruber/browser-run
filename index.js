@@ -61,7 +61,7 @@ function runner (opts) {
       var port = server.address().port;
 
       launch('http://localhost:' + port, opts.browser, function(err, _browser){
-        if (err) console.error(err), process.exit(1);
+        if (err) return dpl.emit('error', err);
         browser = _browser;
       });
     });
