@@ -2,6 +2,8 @@
 
 The easiest way of running code in a browser environment.
 
+[![build status](https://secure.travis-ci.org/juliangruber/browser-run.svg)](http://travis-ci.org/juliangruber/browser-run)
+
 ## Usage
 
 ```bash
