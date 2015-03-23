@@ -6,7 +6,7 @@ var browserify = require('browserify');
 var fs = require('fs');
 var xws = require('xhr-write-stream')();
 var enstore = require('enstore');
-var launcher = require('browser-launcher');
+var launch = require('./lib/launch');
 var ecstatic = require('ecstatic');
 
 module.exports = function (opts) {
@@ -52,7 +52,7 @@ function runner (opts) {
     res.end('not supported');
   });
 
-  var ps;
+  var browser;
 
   if (opts.port) {
     server.listen(opts.port);
@@ -60,28 +60,16 @@ function runner (opts) {
     server.listen(function () {
       var port = server.address().port;
 
-      launcher(function (err, launch) {
+      launch('http://localhost:' + port, opts.browser, function(err, _browser){
         if (err) console.error(err), process.exit(1);
-
-        launch('http://localhost:' + port, {
-          headless: false,
-          browser: opts.browser
-        }, function (err, _ps) {
-          if (err) console.error(err), process.exit(1);
-
-          ps = _ps;
-          ps.stdout.pipe(process.stdout, { end : false });
-          ps.stderr.pipe(process.stderr, { end : false });
-
-          process.on('exit', ps.kill.bind(ps, null));
-        });
+        browser = _browser;
       });
     });
   }
 
   dpl.stop = function () {
     server.close();
-    if (ps) ps.kill();
+    if (browser) browser.kill();
   }
 
   return dpl;
