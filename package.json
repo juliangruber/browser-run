@@ -12,9 +12,9 @@
     "browser-run": "./bin/bin.js"
   },
   "scripts": {
-    "build-reporter": "browserify browser/reporter.js -o static/reporter.js",
-    "prepublish": "npm run build-reporter",
-    "pretest": "npm run build-reporter",
+    "build": "browserify browser/reporter.js -o static/reporter.js",
+    "prepublish": "npm run build",
+    "pretest": "npm run build",
     "test": "tap test/*.js"
   },
   "dependencies": {
