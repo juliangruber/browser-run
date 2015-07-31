@@ -70,6 +70,8 @@ Returns a duplex stream and starts a webserver.
   * `safari`
 * `static`: Serve static files from this directory
 
+If only an empty string is written to it, an error will be thrown as there is nothing to execute.
+
 ### run#stop()
 
 Stop the underlying webserver.

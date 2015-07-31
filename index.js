@@ -17,9 +17,18 @@ module.exports = function (opts) {
 };
 
 function runner (opts) {
+  var empty = true;
+  var input = through(function (chunk) {
+    if (empty && chunk.toString().trim() != '') empty = false;
+    this.queue(chunk);
+  }, function () {
+    if (empty) dpl.emit('error', new Error('javascript required'));
+    this.queue(null);
+  });
   var bundle = enstore();
+  input.pipe(bundle.createWriteStream());
   var output = through();
-  var dpl = duplex(bundle.createWriteStream(), output);
+  var dpl = duplex(input, output);
 
   var server = http.createServer(function (req, res) {
 
@@ -58,7 +67,9 @@ function runner (opts) {
     server.listen(opts.port);
   } else {
     server.listen(function () {
-      var port = server.address().port;
+      var address = server.address();
+      if (!address) return; // already closed
+      var port = address.port;
 
       launch('http://localhost:' + port, opts.browser, function(err, _browser){
         if (err) return dpl.emit('error', err);
