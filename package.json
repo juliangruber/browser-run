@@ -12,22 +12,25 @@
     "browser-run": "./bin/bin.js"
   },
   "scripts": {
+    "build": "browserify browser/reporter.js -o static/reporter.js",
+    "prepublish": "npm run build",
+    "pretest": "npm run build",
     "test": "tap test/*.js"
   },
   "dependencies": {
     "browser-launcher": "~0.3.4",
-    "browserify": "~5.9.3",
     "duplexer": "0.0.3",
     "ecstatic": "^0.5.8",
     "enstore": "~0.0.1",
     "optimist": "~0.3.5",
     "phantomjs-stream": "^1.0.0",
     "through": "~2.2.7",
-    "utf8-stream": "0.0.0",
     "xhr-write-stream": "~0.1.2"
   },
   "devDependencies": {
-    "tap": "*"
+    "browserify": "~5.9.3",
+    "tap": "*",
+    "utf8-stream": "0.0.0"
   },
   "keywords": [
     "browser",

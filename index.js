@@ -45,8 +45,7 @@ function runner (opts) {
     }
     if (req.url == '/reporter.js') {
       res.setHeader('content-type', 'application/javascript');
-      browserify(__dirname + '/browser/reporter.js')
-      .bundle().pipe(res);
+      fs.createReadStream(__dirname + '/static/reporter.js').pipe(res);
       return;
     }
     if (req.url == '/') {
