@@ -18,7 +18,6 @@
     "test": "tap test/*.js"
   },
   "dependencies": {
-    "browserify": "~5.9.3",
     "browser-launcher": "~0.3.4",
     "duplexer": "0.0.3",
     "ecstatic": "^0.5.8",
@@ -29,6 +28,7 @@
     "xhr-write-stream": "~0.1.2"
   },
   "devDependencies": {
+    "browserify": "~5.9.3",
     "tap": "*",
     "utf8-stream": "0.0.0"
   },

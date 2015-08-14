@@ -2,7 +2,6 @@ var http = require('http');
 var spawn = require('child_process').spawn;
 var through = require('through');
 var duplex = require('duplexer');
-var browserify = require('browserify');
 var fs = require('fs');
 var xws = require('xhr-write-stream')();
 var enstore = require('enstore');
