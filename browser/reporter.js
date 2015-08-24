@@ -14,7 +14,7 @@
   for (var i = 0; i < methods.length; i++) (function (method) {
     var old = console[method];
     console[method] = function (msg) {
-      ws.write(Array.prototype.slice.call(arguments, 0).join(" ") + '\n');
+      ws.write(Array.prototype.slice.call(arguments, 0).join(' ') + '\n');
       if (old) old.apply(console, arguments);
       if (msg instanceof Error && typeof JSON != 'undefined') {
         ws.write(JSON.stringify(msg) + '\n'); 
