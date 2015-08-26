@@ -69,6 +69,7 @@ Returns a duplex stream and starts a webserver.
   * `phantom`
   * `safari`
 * `static`: Serve static files from this directory
+* `input`: Input type. Defaults to `javascript`, can be set to `html`.
 
 If only an empty string is written to it, an error will be thrown as there is nothing to execute.
 
