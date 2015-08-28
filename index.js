@@ -7,11 +7,13 @@ var xws = require('xhr-write-stream')();
 var enstore = require('enstore');
 var launch = require('./lib/launch');
 var ecstatic = require('ecstatic');
+var injectScript = require('html-inject-script');
 
 module.exports = function (opts) {
   if (!opts) opts = {};
   if ('number' == typeof opts) opts = { port: opts };
   if (!opts.browser) opts.browser = 'phantom';
+  if (!opts.input) opts.input = 'javascript';
   return runner(opts);
 };
 
@@ -31,11 +33,28 @@ function runner (opts) {
 
   var server = http.createServer(function (req, res) {
 
-    if (/^\/bundle\.js/.test(req.url)) {
-      res.setHeader('content-type', 'application/javascript');
-      bundle.createReadStream().pipe(res);
-      return;
+    if (opts.input === 'javascript') {
+
+      if (/^\/bundle\.js/.test(req.url)) {
+        res.setHeader('content-type', 'application/javascript');
+        bundle.createReadStream().pipe(res);
+        return;
+      }
+
+      if (req.url == '/') {
+        fs.createReadStream(__dirname + '/static/index.html').pipe(res);
+        return;
+      }
+
+    } else if (opts.input === 'html') {
+
+      if (req.url == '/') {
+        bundle.createReadStream().pipe(injectScript(['/reporter.js'])).pipe(res);
+        return;
+      }      
+
     }
+    
     if (req.url == '/xws') {
       req.pipe(xws(function (stream) {
         stream.pipe(output); 
@@ -45,10 +64,6 @@ function runner (opts) {
     if (req.url == '/reporter.js') {
       res.setHeader('content-type', 'application/javascript');
       fs.createReadStream(__dirname + '/static/reporter.js').pipe(res);
-      return;
-    }
-    if (req.url == '/') {
-      fs.createReadStream(__dirname + '/static/index.html').pipe(res);
       return;
     }
     if (opts.static) {
