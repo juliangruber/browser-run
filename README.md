@@ -49,6 +49,7 @@ Options:
   --browser, -b  Browser to use. Available if installed: chrome, firefox, ie, phantom, safari  [default: "phantom"]
   --port, -p     Starts listening on that port and waits for you to open a browser
   --static, -s   Serve static assets from this directory
+  --input, -i    Input type. Defaults to 'javascript', can be set to 'html'.  
   --help, -h     Print help
 
 ```
