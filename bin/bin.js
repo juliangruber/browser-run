@@ -21,6 +21,9 @@ var argv = optimist
   .describe('static', 'Serve static assets from this directory')
   .alias('s', 'static')
 
+  .describe('input', 'Input type. Defaults to \'javascript\', can be set to \'html\'.')
+  .alias('i', 'input')
+
   .describe('help', 'Print help')
   .alias('h', 'help')
 
