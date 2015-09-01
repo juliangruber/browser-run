@@ -7,8 +7,9 @@ The easiest way of running code in a browser environment.
 ## Usage
 
 ```bash
-$ echo "console.log('Hey there from ' + document.location)" | browser-run
-Hey there from http://localhost:53227/
+$ echo "console.log('Hey from ' + location); window.close()" | browser-run
+Hey from http://localhost:53227/
+$
 ```
 
 Or use `browser-run` programmatically:
@@ -18,8 +19,7 @@ var run = require('browser-run');
 
 var browser = run();
 browser.pipe(process.stdout);
-browser.write('console.log(document.location)');
-browser.end();
+browser.end('console.log(location); window.close()');
 ```
 
 ## Example with browserify
@@ -73,6 +73,8 @@ Returns a duplex stream and starts a webserver.
 * `input`: Input type. Defaults to `javascript`, can be set to `html`.
 
 If only an empty string is written to it, an error will be thrown as there is nothing to execute.
+
+If you call `window.close()` inside the script, the browser will exit.
 
 ### run#stop()
 
