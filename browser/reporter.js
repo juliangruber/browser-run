@@ -1,8 +1,14 @@
 ;(function () {
-  if (!/Phantom/.test(window.navigator.userAgent)) {
+  if (/Phantom/.test(window.navigator.userAgent)) {
+    window.close = function () {
+      setTimeout(function () {
+        phantom.exit();
+      });
+    };
+  } else {
     window.onerror = function (err) {
       console.error(err);
-    }
+    };
   }
 
   var xws = require('xhr-write-stream')('/xws');
