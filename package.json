@@ -22,7 +22,7 @@
     "enstore": "~0.0.1",
     "html-inject-script": "^1.0.0",
     "optimist": "~0.3.5",
-    "phantomjs-stream": "^1.0.0",
+    "phantomjs-stream": "^1.1.1",
     "through": "~2.2.7",
     "xhr-write-stream": "~0.1.2"
   },

@@ -83,6 +83,10 @@ function runner (opts) {
       launch('http://localhost:' + port, opts.browser, function(err, _browser){
         if (err) return dpl.emit('error', err);
         browser = _browser;
+        browser.on('exit', function (code, signal) {
+          try { server.close() } catch (e) {}
+          dpl.emit('exit', code, signal);
+        });
       });
     });
   }
