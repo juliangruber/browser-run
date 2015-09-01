@@ -90,7 +90,7 @@ function runner (opts) {
   dpl.stop = function () {
     server.close();
     if (browser) browser.kill();
-  }
+  };
 
   return dpl;
 }
