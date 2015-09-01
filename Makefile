@@ -1,7 +1,14 @@
 
+build:
+	@node_modules/.bin/browserify browser/reporter.js -o static/reporter.js
+
 test:
-	@npm run build
+	@make build
 	@node_modules/.bin/tap test/*.js
 
-.PHONY: test
+example:
+	@make build
+	@cat example.js | bin/bin.js
+
+.PHONY: test example build
 

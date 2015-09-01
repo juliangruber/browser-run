@@ -12,10 +12,8 @@
     "browser-run": "./bin/bin.js"
   },
   "scripts": {
-    "build": "browserify browser/reporter.js -o static/reporter.js",
-    "prepublish": "npm run build",
-    "pretest": "npm run build",
-    "test": "tap test/*.js"
+    "prepublish": "make build",
+    "test": "make test"
   },
   "dependencies": {
     "browser-launcher": "~0.3.4",
