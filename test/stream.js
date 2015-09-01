@@ -10,6 +10,5 @@ test('stream', function (t) {
     t.end();
   });
 
-  browser.write('console.log("foo")');
-  browser.end();
+  browser.end('console.log("foo")');
 });
