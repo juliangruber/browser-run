@@ -41,12 +41,16 @@ function runner (opts) {
       }
 
       if (req.url == '/') {
-        fs.createReadStream(__dirname + '/static/index.html').pipe(res);
+        getRoot(req, res, function() {
+          fs.createReadStream(__dirname + '/static/index.html').pipe(res);
+        });
         return;
       }
     } else if (opts.input === 'html') {
       if (req.url == '/') {
-        bundle.createReadStream().pipe(injectScript(['/reporter.js'])).pipe(res);
+        getRoot(req, res, function() {
+          bundle.createReadStream().pipe(injectScript(['/reporter.js'])).pipe(res);
+        });
         return;
       }      
     }
@@ -69,6 +73,10 @@ function runner (opts) {
 
     res.end('not supported');
   });
+  var getRoot = function(req, res, defaultFn) {
+    var getRoot2 = opts.getRoot;
+    return getRoot2 ? getRoot2(req, res) : defaultFn(req, res);
+  };
 
   var browser;
 

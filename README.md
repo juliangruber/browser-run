@@ -37,6 +37,21 @@ var browser = require('browser-run');
 browserify('main.js').bundle().pipe(browser()).pipe(process.stdout);
 ```
 
+## Example using the getRoot option to serve GET /
+
+You can override the interal server handler for GET / to serve custom html files.
+
+```js
+var browserify = require('browserify');
+var browser = require('browser-run');
+var fs = require('fs');
+var getRoot = function(req, res) {
+  fs.createReadStream(__dirname + '/www/index.html').pipe(res);
+}
+
+browserify('main.js').bundle().pipe(browser({getRoot: getRoot})).pipe(process.stdout);
+```
+
 ## CLI
 
 ```bash

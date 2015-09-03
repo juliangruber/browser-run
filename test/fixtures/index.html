@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Custom index.html</title>
+  <meta charset="utf-8">
+  <script src="/reporter.js"></script>
+</head>
+<body>
+<script>
+  document.write(
+    '<' + 'script src="/bundle.js?' + Math.random().toString(16).slice(2) +
+    '"><' + '/script' + '>'
+  )
+</script>
+</body>
+</html>
