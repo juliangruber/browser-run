@@ -54,6 +54,10 @@ Options:
 
 ```
 
+## Custom html file
+
+By using `-input html` or `{ input: 'html' }` you can provide a custom html file for browser-run to use. Keep in mind though that it always needs to have `<script src="/reporter.js"></script>` above other script tags so browser-run is able to properly forward your `console.log`s etc to the terminal.
+
 ## API
 
 ### run([opts])
