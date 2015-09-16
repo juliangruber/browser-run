@@ -1,4 +1,6 @@
 ;(function () {
+  require('source-map-support').install();
+
   if (/Phantom/.test(window.navigator.userAgent)) {
     window.close = function () {
       setTimeout(function () {
