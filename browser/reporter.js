@@ -5,11 +5,13 @@
         phantom.exit();
       }, 1000);
     };
-  } else {
-    window.onerror = function (err) {
-      console.error(err);
-    };
   }
+
+  window.onerror = function (back, _, _, _, err) {
+    console.error(err && err.stack
+      || err
+      || back);
+  };
 
   var xws = require('xhr-write-stream')('/xws');
   var ws = require('utf8-stream')();
