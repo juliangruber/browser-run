@@ -6,9 +6,13 @@ test:
 	@make build
 	@node_modules/.bin/tap test/*.js
 
-example:
+example-simple:
 	@make build
-	@cat example.js | bin/bin.js
+	@cat example/simple.js | bin/bin.js
+
+example-error:
+	@make build
+	@cat example/error.js | bin/bin.js
 
 .PHONY: test example build
 
