@@ -3,7 +3,7 @@
     window.close = function () {
       setTimeout(function () {
         phantom.exit();
-      });
+      }, 1000);
     };
   } else {
     window.onerror = function (err) {
