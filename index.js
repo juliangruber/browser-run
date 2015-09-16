@@ -36,6 +36,7 @@ function runner (opts) {
     if (opts.input === 'javascript') {
       if (/^\/bundle\.js/.test(req.url)) {
         res.setHeader('content-type', 'application/javascript');
+        res.setHeader('cache-control', 'no-cache');
         bundle.createReadStream().pipe(res);
         return;
       }
