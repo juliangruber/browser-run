@@ -16,20 +16,20 @@
     "test": "make test"
   },
   "dependencies": {
-    "browser-launcher": "~0.3.4",
+    "browser-launcher": "0.3.5",
     "duplexer": "0.0.3",
-    "ecstatic": "^0.5.8",
-    "enstore": "~0.0.1",
-    "html-inject-script": "^1.0.0",
-    "optimist": "~0.3.5",
-    "phantomjs-stream": "^1.1.1",
-    "source-map-support": "^0.3.2",
-    "through": "~2.2.7",
-    "xhr-write-stream": "~0.1.2"
+    "ecstatic": "0.5.8",
+    "enstore": "0.0.2",
+    "html-inject-script": "1.1.0",
+    "optimist": "0.3.7",
+    "phantomjs-stream": "1.1.1",
+    "source-map-support": "0.3.2",
+    "through": "2.2.7",
+    "xhr-write-stream": "0.1.2"
   },
   "devDependencies": {
-    "browserify": "~5.9.3",
-    "tap": "*",
+    "browserify": "5.9.3",
+    "tap": "2.0.0",
     "utf8-stream": "0.0.0"
   },
   "keywords": [
