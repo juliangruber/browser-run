@@ -21,7 +21,7 @@
     "ecstatic": "0.5.8",
     "enstore": "0.0.2",
     "html-inject-script": "1.1.0",
-    "optimist": "0.3.7",
+    "optimist": "0.6.1",
     "phantomjs-stream": "1.1.1",
     "source-map-support": "0.3.2",
     "through": "2.2.7",
