@@ -29,6 +29,7 @@
   },
   "devDependencies": {
     "babel": "^5.8.23",
+    "babelify": "^6.3.0",
     "browserify": "5.9.3",
     "tap": "2.0.0",
     "utf8-stream": "0.0.0"
