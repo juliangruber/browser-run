@@ -18,7 +18,7 @@
   "dependencies": {
     "browser-launcher": "0.3.5",
     "duplexer": "0.0.3",
-    "ecstatic": "1.1.0",
+    "ecstatic": "1.1.2",
     "enstore": "0.0.2",
     "html-inject-script": "1.1.0",
     "optimist": "0.6.1",
