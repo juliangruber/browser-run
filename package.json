@@ -24,7 +24,7 @@
     "optimist": "0.6.1",
     "phantomjs-stream": "1.1.1",
     "source-map-support": "0.3.2",
-    "through": "2.2.7",
+    "through": "2.3.8",
     "xhr-write-stream": "0.1.2"
   },
   "devDependencies": {
