@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "babel": "^5.8.23",
-    "browserify": "5.9.3",
+    "browserify": "12.0.1",
     "tap": "2.2.0",
     "utf8-stream": "0.0.0"
   },
