@@ -8,11 +8,12 @@ var enstore = require('enstore');
 var launch = require('./lib/launch');
 var ecstatic = require('ecstatic');
 var injectScript = require('html-inject-script');
+var destroyable = require('server-destroy');
 
 module.exports = function (opts) {
   if (!opts) opts = {};
   if ('number' == typeof opts) opts = { port: opts };
-  if (!opts.browser) opts.browser = 'phantom';
+  if (!opts.browser) opts.browser = 'electron';
   if (!opts.input) opts.input = 'javascript';
   return runner(opts);
 };
@@ -70,6 +71,7 @@ function runner (opts) {
 
     res.end('not supported');
   });
+  destroyable(server);
 
   var browser;
 
@@ -84,8 +86,12 @@ function runner (opts) {
       launch('http://localhost:' + port, opts.browser, function(err, _browser){
         if (err) return dpl.emit('error', err);
         browser = _browser;
+
+        // phantom, electron
+        if (browser.pipe) browser.setEncoding('utf8').pipe(output);
+
         browser.on('exit', function (code, signal) {
-          try { server.close() } catch (e) {}
+          server.destroy();
           dpl.emit('exit', code, signal);
         });
       });
@@ -93,7 +99,7 @@ function runner (opts) {
   }
 
   dpl.stop = function () {
-    server.close();
+    server.destroy();
     if (browser) browser.kill();
   };
 

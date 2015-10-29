@@ -10,10 +10,12 @@ var argv = optimist
     'Usage: $0 [OPTIONS]'
   )
 
-  .describe('browser', 'Browser to use. Available if installed: '
+  .describe('browser', 'Browser to use. '
+      + 'Always available: electron. '
+      + 'Available if installed: '
       + 'chrome, firefox, ie, phantom, safari')
   .alias('browser', 'b')
-  .default('browser', 'phantom')
+  .default('browser', 'electron')
 
   .describe('port', 'Starts listening on that port and waits for you to open a browser')
   .alias('p', 'port')

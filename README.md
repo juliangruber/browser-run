@@ -2,6 +2,8 @@
 
 The easiest way of running code in a browser environment.
 
+Bundles `electronjs` by default!
+
 [![build status](https://secure.travis-ci.org/juliangruber/browser-run.svg)](http://travis-ci.org/juliangruber/browser-run)
 
 ## Usage
@@ -46,11 +48,11 @@ Write code to stdin and receive console output on stdout.
 Usage: browser-run [OPTIONS]
 
 Options:
-  --browser, -b  Browser to use. Available if installed: chrome, firefox, ie, phantom, safari  [default: "phantom"]
-  --port, -p     Starts listening on that port and waits for you to open a browser
-  --static, -s   Serve static assets from this directory
-  --input, -i    Input type. Defaults to 'javascript', can be set to 'html'.  
-  --help, -h     Print help
+  --browser, -b  Browser to use. Always available: electron. Available if installed: chrome, firefox, ie, phantom, safari  [default: "electron"]
+  --port         Starts listening on that port and waits for you to open a browser                                       
+  --static       Serve static assets from this directory                                                                 
+  --input        Input type. Defaults to 'javascript', can be set to 'html'.                                             
+  --help         Print help                                                                                              
 
 ```
 
@@ -67,7 +69,7 @@ Returns a duplex stream and starts a webserver.
 `opts` can be:
 
 * `port`: If speficied, no browser will be started, so you can point one yourself to `http://localhost/<port>`
-* `browser`: Browser to use. Defaults to `phantom`. Available if installed:
+* `browser`: Browser to use. Defaults to `electron`. Available if installed:
   * `chrome`
   * `firefox`
   * `ie`

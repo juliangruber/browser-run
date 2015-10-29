@@ -1,13 +1,14 @@
 var test = require('tap').test;
 var run = require('..');
+var concat = require('concat-stream');
 
-test('window.close()', function (t) {
+test('phantomjs', function (t) {
   t.plan(2);
-  var browser = run();
+  var browser = run({ browser: 'phantom' });
 
-  browser.on('data', function (data) {
-    t.equal(data, 'foo\n', 'data');
-  });
+  browser.pipe(concat(function(data){
+    t.equal(data.toString(), 'foo\n', 'data');
+  }));
 
   browser.on('exit', function (code) {
     t.equal(code, 0, 'exit');

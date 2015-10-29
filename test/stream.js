@@ -6,7 +6,7 @@ test('stream', function (t) {
 
   browser.on('data', function (data) {
     browser.stop();
-    t.equal(data, 'foo\n');
+    t.equal(data, 'foo\n', 'correct stdout');
     t.end();
   });
 
