@@ -30,7 +30,7 @@
     "xhr-write-stream": "0.1.2"
   },
   "devDependencies": {
-    "babel": "^5.8.23",
+    "babel": "^6.0.12",
     "browserify": "^12.0.1",
     "concat-stream": "^1.5.1",
     "tap": "2.2.0",
