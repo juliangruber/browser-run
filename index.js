@@ -88,7 +88,10 @@ function runner (opts) {
         browser = _browser;
 
         // phantom, electron
-        if (browser.pipe) browser.setEncoding('utf8').pipe(output);
+        if (browser.pipe) {
+          browser.setEncoding('utf8');
+          browser.pipe(output);
+        }
 
         browser.on('exit', function (code, signal) {
           server.destroy();
