@@ -94,7 +94,7 @@ function runner (opts) {
         }
 
         browser.on('exit', function (code, signal) {
-          server.destroy();
+          try { server.destroy() } catch (e) {}
           dpl.emit('exit', code, signal);
         });
       });
