@@ -5,6 +5,7 @@ The easiest way of running code in a browser environment.
 Bundles `electronjs` by default!
 
 [![build status](https://secure.travis-ci.org/juliangruber/browser-run.svg)](http://travis-ci.org/juliangruber/browser-run)
+[![downloads](https://img.shields.io/npm/dm/browser-run.svg)](https://www.npmjs.org/package/browser-run)
 
 ## Usage
 
