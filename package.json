@@ -30,7 +30,7 @@
     "xhr-write-stream": "0.1.2"
   },
   "devDependencies": {
-    "browserify": "^12.0.1",
+    "browserify": "^13.0.0",
     "concat-stream": "^1.5.1",
     "tap": "5.0.0",
     "utf8-stream": "0.0.0"
