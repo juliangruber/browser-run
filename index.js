@@ -102,7 +102,7 @@ function runner (opts) {
   }
 
   dpl.stop = function () {
-    server.destroy();
+    try { server.destroy(); } catch (e) {}
     if (browser) browser.kill();
   };
 
