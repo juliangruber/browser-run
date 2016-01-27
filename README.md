@@ -87,7 +87,7 @@ If you call `window.close()` inside the script, the browser will exit.
 
 Stop the underlying webserver.
 
-## Travis
+## Headless testing
 
 To use the default electron browser on travis, add this to your travis.yml:
 
@@ -103,6 +103,15 @@ install:
 ```
 
 [Source](https://github.com/rhysd/Shiba/blob/055a11a0a2b4f727577fe61371a88d8db9277de5/.travis.yml).
+
+For gnu/linux installations without a graphical environment:
+
+```bash
+$ sudo apt-get install xvfb # or equivalent
+$ export DISPLAY=':99.0'
+$ Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
+$ browser-run ...
+```
 
 ## Installation
 
