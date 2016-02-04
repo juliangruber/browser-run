@@ -3,9 +3,11 @@ var run = require('..');
 
 test('electron-stream', function (t) {
   var browser = run({
-    browser: 'electron',
-    browserOptions: {
-      height: 500
+    browser: {
+      name: 'electron',
+      options: {
+        height: 500
+      }
     }
   });
 
