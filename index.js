@@ -14,6 +14,7 @@ module.exports = function (opts) {
   if (!opts) opts = {};
   if ('number' == typeof opts) opts = { port: opts };
   if (!opts.browser) opts.browser = 'electron';
+  if (!opts.browserOptions) opts.browserOptions = {};
   if (!opts.input) opts.input = 'javascript';
   return runner(opts);
 };
@@ -50,12 +51,12 @@ function runner (opts) {
       if (req.url == '/') {
         bundle.createReadStream().pipe(injectScript(['/reporter.js'])).pipe(res);
         return;
-      }      
+      }
     }
-    
+
     if (req.url == '/xws') {
       req.pipe(xws(function (stream) {
-        stream.pipe(output); 
+        stream.pipe(output);
       }));
       return req.on('end', res.end.bind(res));
     }
@@ -83,7 +84,7 @@ function runner (opts) {
       if (!address) return; // already closed
       var port = address.port;
 
-      launch('http://localhost:' + port, opts.browser, function(err, _browser){
+      launch('http://localhost:' + port, opts.browser, opts.browserOptions, function(err, _browser){
         if (err) return dpl.emit('error', err);
         browser = _browser;
 
