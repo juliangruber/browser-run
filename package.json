@@ -20,7 +20,7 @@
     "duplexer": "0.0.3",
     "ecstatic": "1.4.0",
     "electron-stream": "^2.1.0",
-    "enstore": "0.0.2",
+    "enstore": "1.0.1",
     "html-inject-script": "1.1.0",
     "optimist": "0.6.1",
     "phantomjs-stream": "1.1.1",
