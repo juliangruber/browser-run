@@ -16,25 +16,25 @@
     "test": "make test"
   },
   "dependencies": {
-    "browser-launcher": "0.3.5",
-    "duplexer": "0.1.1",
-    "ecstatic": "1.4.1",
+    "browser-launcher": "^0.3.5",
+    "duplexer": "^0.1.1",
+    "ecstatic": "^1.4.1",
     "electron-stream": "^3.0.1",
-    "enstore": "1.0.1",
-    "html-inject-script": "1.1.0",
-    "optimist": "0.6.1",
-    "phantomjs-stream": "1.1.1",
+    "enstore": "^1.0.1",
+    "html-inject-script": "^1.1.0",
+    "optimist": "^0.6.1",
+    "phantomjs-stream": "^1.1.1",
     "server-destroy": "^1.0.1",
-    "source-map-support": "0.4.0",
-    "through": "2.3.8",
-    "xhr-write-stream": "0.1.2"
+    "source-map-support": "^0.4.0",
+    "through": "^2.3.8",
+    "xhr-write-stream": "^0.1.2"
   },
   "devDependencies": {
     "browserify": "^13.0.0",
     "concat-stream": "^1.5.1",
-    "tap": "5.7.2",
+    "tap": "^5.7.2",
     "tree-kill": "^1.0.0",
-    "utf8-stream": "0.0.0"
+    "utf8-stream": "^0.0.0"
   },
   "keywords": [
     "browser",
