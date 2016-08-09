@@ -18,7 +18,7 @@
   "dependencies": {
     "browser-launcher": "^0.3.5",
     "duplexer": "^0.1.1",
-    "ecstatic": "^1.4.1",
+    "ecstatic": "^2.0.0",
     "electron-stream": "^3.0.1",
     "enstore": "^1.0.1",
     "html-inject-script": "^1.1.0",
