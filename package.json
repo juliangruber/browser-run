@@ -33,7 +33,7 @@
     "browserify": "^13.0.0",
     "concat-stream": "^1.5.1",
     "phantomjs-prebuilt": "^2.1.9",
-    "tap": "^7.0.0",
+    "tap": "^7.0.1",
     "tree-kill": "^1.0.0",
     "utf8-stream": "^0.0.0"
   },
