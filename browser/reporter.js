@@ -7,6 +7,13 @@
         phantom.exit();
       }, 1000);
     };
+  } else if (!/Electron/.test(window.navigator.userAgent)) {
+    var close = window.close;
+    window.close = function () {
+      setTimeout(function () {
+        close.call(window);
+      }, 1000);
+    };
   }
 
   if (!/Phantom|Electron/.test(window.navigator.userAgent)) {
