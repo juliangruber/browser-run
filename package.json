@@ -19,7 +19,7 @@
     "browser-launcher": "^0.3.5",
     "duplexer": "^0.1.1",
     "ecstatic": "^2.0.0",
-    "electron-stream": "^3.0.1",
+    "electron-stream": "^4.0.0",
     "enstore": "^1.0.1",
     "html-inject-script": "^1.1.0",
     "optimist": "^0.6.1",
