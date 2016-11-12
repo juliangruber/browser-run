@@ -23,6 +23,9 @@ var argv = optimist
   .describe('static', 'Serve static assets from this directory')
   .alias('s', 'static')
 
+  .describe('mock', 'Path to code to handle requests for mocking a dynamic back-end')
+  .alias('m', 'mock')
+
   .describe('input', 'Input type. Defaults to \'javascript\', can be set to \'html\'.')
   .alias('i', 'input')
 
