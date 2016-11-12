@@ -1,4 +1,5 @@
 var http = require('http');
+var path = require('path');
 var spawn = require('child_process').spawn;
 var through = require('through');
 var duplex = require('duplexer');
@@ -34,7 +35,7 @@ function runner (opts) {
 
   var mockHandler;
   if(opts.mock){
-    mockHandler = require(opts.mock)
+    mockHandler = require(path.resolve('./', opts.mock))
   }
 
   var server = http.createServer(function (req, res) {
