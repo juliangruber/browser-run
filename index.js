@@ -11,7 +11,7 @@ var injectScript = require('html-inject-script');
 var destroyable = require('server-destroy');
 
 try {
-  fs.stat(__dirname + '/static/reporter.js')
+  fs.statSync(__dirname + '/static/reporter.js')
 } catch (_) {
   console.error('Reporter script missing. Run `make build` first.')
 }
