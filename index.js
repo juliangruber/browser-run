@@ -1,4 +1,5 @@
 var http = require('http');
+var path = require('path');
 var spawn = require('child_process').spawn;
 var through = require('through');
 var duplex = require('duplexer');
@@ -38,6 +39,8 @@ function runner (opts) {
   var output = through();
   var dpl = duplex(input, output);
 
+  var mockHandler = opts.mock && require(path.resolve('./', opts.mock))
+
   var server = http.createServer(function (req, res) {
 
     if (opts.input === 'javascript') {
@@ -56,12 +59,12 @@ function runner (opts) {
       if (req.url == '/') {
         bundle.createReadStream().pipe(injectScript(['/reporter.js'])).pipe(res);
         return;
-      }      
+      }
     }
-    
+
     if (req.url == '/xws') {
       req.pipe(xws(function (stream) {
-        stream.pipe(output); 
+        stream.pipe(output);
       }));
       return req.on('end', res.end.bind(res));
     }
@@ -73,6 +76,9 @@ function runner (opts) {
     if (opts.static) {
       ecstatic({ root: opts.static })(req, res);
       return;
+    }
+    if (mockHandler && '/mock' === req.url.substr(0,5)){
+        return mockHandler(req, res);
     }
 
     res.end('not supported');

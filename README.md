@@ -52,6 +52,7 @@ Options:
   --browser, -b  Browser to use. Always available: electron. Available if installed: chrome, firefox, ie, phantom, safari  [default: "electron"]
   --port         Starts listening on that port and waits for you to open a browser                                       
   --static       Serve static assets from this directory                                                                 
+  --mock         Path to code to handle requests for mocking a dynamic back-end                                       
   --input        Input type. Defaults to 'javascript', can be set to 'html'.                                             
   --help         Print help                                                                                              
 
@@ -59,7 +60,23 @@ Options:
 
 ## Custom html file
 
-By using `-input html` or `{ input: 'html' }` you can provide a custom html file for browser-run to use. Keep in mind though that it always needs to have `<script src="/reporter.js"></script>` above other script tags so browser-run is able to properly forward your `console.log`s etc to the terminal.
+By using `--input html` or `{ input: 'html' }` you can provide a custom html file for browser-run to use. Keep in mind though that it always needs to have `<script src="/reporter.js"></script>` above other script tags so browser-run is able to properly forward your `console.log`s etc to the terminal.
+
+## Dynamic back-end mock
+
+By using `--mock mock.js` or `{ mock: 'mock.js'}` you can provide a custom server-side implementation and handle all requests that are sent to paths beginning with `/mock`
+
+mock.js needs to export a function that accepts `req` and `res` arguments for handling requests.
+
+Example:
+
+```js
+module.exports = function(req,res){
+  if (req.url === '/mock/echo') {
+    req.pipe(res)
+  }
+}
+```
 
 ## API
 
@@ -77,6 +94,7 @@ Returns a duplex stream and starts a webserver.
   * `phantom`
   * `safari`
 * `static`: Serve static files from this directory
+* `mock`: Path to code to handle requests for mocking a dynamic back-end
 * `input`: Input type. Defaults to `javascript`, can be set to `html`.
 
 If only an empty string is written to it, an error will be thrown as there is nothing to execute.
