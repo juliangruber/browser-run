@@ -33,10 +33,7 @@ function runner (opts) {
   var output = through();
   var dpl = duplex(input, output);
 
-  var mockHandler;
-  if(opts.mock){
-    mockHandler = require(path.resolve('./', opts.mock))
-  }
+  var mockHandler = opts.mock && require(path.resolve('./', opts.mock))
 
   var server = http.createServer(function (req, res) {
 
