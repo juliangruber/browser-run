@@ -30,7 +30,7 @@
     "xhr-write-stream": "^0.1.2"
   },
   "devDependencies": {
-    "browserify": "^13.0.0",
+    "browserify": "^14.1.0",
     "concat-stream": "^1.5.1",
     "phantomjs-prebuilt-that-works": "^3.0.1",
     "tap": "^10.0.1",
