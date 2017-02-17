@@ -11,6 +11,12 @@ var ecstatic = require('ecstatic');
 var injectScript = require('html-inject-script');
 var destroyable = require('server-destroy');
 
+try {
+  fs.stat(__dirname + '/static/reporter.js')
+} catch (_) {
+  console.error('Reporter script missing. Run `make build` first.')
+}
+
 module.exports = function (opts) {
   if (!opts) opts = {};
   if ('number' == typeof opts) opts = { port: opts };

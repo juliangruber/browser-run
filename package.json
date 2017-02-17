@@ -1,7 +1,7 @@
 {
   "name": "browser-run",
   "description": "Transform stream that executes JavaScript it receives in a real browser and outputs console output",
-  "version": "3.3.0",
+  "version": "3.4.0",
   "repository": {
     "type": "git",
     "url": "git://github.com/juliangruber/browser-run.git"
@@ -16,7 +16,7 @@
     "test": "make test"
   },
   "dependencies": {
-    "browser-launcher": "^0.3.5",
+    "browser-launcher": "^1.0.0",
     "duplexer": "^0.1.1",
     "ecstatic": "^2.0.0",
     "electron-stream": "^4.0.0",
@@ -30,10 +30,10 @@
     "xhr-write-stream": "^0.1.2"
   },
   "devDependencies": {
-    "browserify": "^13.0.0",
+    "browserify": "^14.1.0",
     "concat-stream": "^1.5.1",
     "phantomjs-prebuilt-that-works": "^3.0.1",
-    "tap": "^8.0.0",
+    "tap": "^10.0.1",
     "tree-kill": "^1.0.0",
     "utf8-stream": "^0.0.0"
   },
