@@ -1,4 +1,5 @@
 var http = require('http');
+var path = require('path');
 var spawn = require('child_process').spawn;
 var through = require('through');
 var duplex = require('duplexer');
@@ -10,6 +11,12 @@ var launch = require('./lib/launch');
 var ecstatic = require('ecstatic');
 var injectScript = require('html-inject-script');
 var destroyable = require('server-destroy');
+
+try {
+  fs.stat(__dirname + '/static/reporter.js')
+} catch (_) {
+  console.error('Reporter script missing. Run `make build` first.')
+}
 
 module.exports = function (opts) {
   if (!opts) opts = {};
@@ -32,6 +39,8 @@ function runner (opts) {
   input.pipe(bundle.createWriteStream());
   var output = through();
   var dpl = duplex(input, output);
+
+  var mockHandler = opts.mock && require(path.resolve('./', opts.mock))
 
   var server = http.createServer(function (req, res) {
 
@@ -68,6 +77,9 @@ function runner (opts) {
     if (opts.static) {
       ecstatic({ root: opts.static })(req, res);
       return;
+    }
+    if (mockHandler && '/mock' === req.url.substr(0,5)){
+        return mockHandler(req, res);
     }
 
     res.end('not supported');
