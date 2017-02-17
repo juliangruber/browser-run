@@ -91,7 +91,7 @@ function runner (opts) {
   if (opts.port) {
     server.listen(opts.port);
   } else {
-    if (opts.autoclose){
+    if (opts.tapFinish){
       output.pipe(finished(function(){
         browser.kill()
       }))

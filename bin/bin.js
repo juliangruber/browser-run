@@ -29,6 +29,9 @@ var argv = optimist
   .describe('input', 'Input type. Defaults to \'javascript\', can be set to \'html\'.')
   .alias('i', 'input')
 
+  .describe('tap-finish', 'Close the browser and exit when TAP test suite output is finished')
+  .alias('tapFinish', 'tap-finish')
+
   .describe('help', 'Print help')
   .alias('h', 'help')
 
