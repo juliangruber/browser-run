@@ -54,6 +54,7 @@ Options:
   --static       Serve static assets from this directory                                                                 
   --mock         Path to code to handle requests for mocking a dynamic back-end                                       
   --input        Input type. Defaults to 'javascript', can be set to 'html'.                                             
+  --tap-finish   Close the browser and exit when TAP test suite output is finished                                             
   --help         Print help                                                                                              
 
 ```

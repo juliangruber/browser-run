@@ -26,6 +26,7 @@
     "phantomjs-stream": "^1.1.1",
     "server-destroy": "^1.0.1",
     "source-map-support": "^0.4.0",
+    "tap-finished": "0.0.1",
     "through": "^2.3.8",
     "xhr-write-stream": "^0.1.2"
   },

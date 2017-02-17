@@ -3,6 +3,7 @@ var path = require('path');
 var spawn = require('child_process').spawn;
 var through = require('through');
 var duplex = require('duplexer');
+var finished = require('tap-finished');
 var fs = require('fs');
 var xws = require('xhr-write-stream')();
 var enstore = require('enstore');
@@ -90,6 +91,12 @@ function runner (opts) {
   if (opts.port) {
     server.listen(opts.port);
   } else {
+    if (opts.tapFinish){
+      output.pipe(finished(function(){
+        browser.kill()
+      }))
+    }
+
     server.listen(function () {
       var address = server.address();
       if (!address) return; // already closed
