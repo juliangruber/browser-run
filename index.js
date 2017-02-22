@@ -20,7 +20,12 @@ try {
 module.exports = function (opts) {
   if (!opts) opts = {};
   if ('number' == typeof opts) opts = { port: opts };
-  if (!opts.browser) opts.browser = 'electron';
+  if (!opts.browser || 'string' == typeof opts.browser) {
+    opts.browser = {
+      name: opts.browser || 'electron'
+    }
+  };
+  if (!opts.browser.options) opts.browser.options = {};
   if (!opts.input) opts.input = 'javascript';
   return runner(opts);
 };
@@ -95,7 +100,7 @@ function runner (opts) {
       if (!address) return; // already closed
       var port = address.port;
 
-      launch('http://localhost:' + port, opts.browser, function(err, _browser){
+      launch('http://localhost:' + port, opts.browser.name, opts.browser.options, function(err, _browser){
         if (err) return dpl.emit('error', err);
         browser = _browser;
 
