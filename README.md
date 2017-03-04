@@ -52,11 +52,11 @@ Options:
   --browser, -b       Browser to use. Always available: electron. Available if installed: chrome, firefox, ie, phantom, safari  [default: "electron"]
   --port              Starts listening on that port and waits for you to open a browser                                       
   --static            Serve static assets from this directory                                                                 
-  --mock              Path to code to handle requests for mocking a dynamic back-end                                       
+  --mock              Path to code to handle requests for mocking a dynamic back-end                                          
   --input             Input type. Defaults to 'javascript', can be set to 'html'.                                             
-  --node-integration  Enable nodejs apis in electron
-  --help              Print help                                                                                              
-
+  --node-integration  Enable nodejs apis in electron                                                                          
+  --basedir           Set this if you need to require node modules in node mode                                               
+  --help              Print help  
 ```
 
 ## Custom html file
@@ -98,6 +98,7 @@ Returns a duplex stream and starts a webserver.
 * `mock`: Path to code to handle requests for mocking a dynamic back-end
 * `input`: Input type. Defaults to `javascript`, can be set to `html`.
 * `nodeIntegration`: Enable nodejs integration in electron
+* `basedir`: Set this if you need to require node modules in `node` mode
 
 If only an empty string is written to it, an error will be thrown as there is nothing to execute.
 

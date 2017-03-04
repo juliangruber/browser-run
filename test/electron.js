@@ -29,7 +29,7 @@ test('electron', function (t) {
     });
 
     browser.pipe(concat(function(data){
-      t.ok(/electron\.asar/.test(data.toString()));
+      t.ok(/browser-run/.test(data.toString()));
     }));
 
     browser.on('exit', function (code) {
@@ -37,6 +37,26 @@ test('electron', function (t) {
     });
 
     browser.write('console.log(__dirname);');
+    browser.write('window.close();');
+    browser.end();
+  });
+  t.test('basedir option', function (t) {
+    t.plan(2);
+    var browser = run({
+      browser: 'electron',
+      nodeIntegration: true,
+      basedir: __dirname + '/../'
+    });
+
+    browser.pipe(concat(function(data){
+      t.ok(/^true\n$/.test(data.toString()));
+    }));
+
+    browser.on('exit', function (code) {
+      t.equal(code, 0, 'exit');
+    });
+
+    browser.write('console.log(!!require.resolve("tap"));');
     browser.write('window.close();');
     browser.end();
   });

@@ -98,7 +98,8 @@ function runner (opts) {
 
       launch(extend(opts, {
         loc: 'http://localhost:' + port,
-        name: opts.browser
+        name: opts.browser,
+        bundle: bundle
       }), function(err, _browser){
         if (err) return dpl.emit('error', err);
         browser = _browser;

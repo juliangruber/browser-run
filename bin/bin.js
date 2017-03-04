@@ -32,6 +32,9 @@ var argv = optimist
   .describe('node-integration', 'Enable nodejs apis in electron')
   .alias('n', 'node-integration')
 
+  .describe('basedir', 'Set this if you need to require node modules in node mode')
+  .alias('b', 'basedir')
+
   .describe('help', 'Print help')
   .alias('h', 'help')
 
