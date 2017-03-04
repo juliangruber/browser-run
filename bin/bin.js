@@ -29,11 +29,15 @@ var argv = optimist
   .describe('input', 'Input type. Defaults to \'javascript\', can be set to \'html\'.')
   .alias('i', 'input')
 
+  .describe('node-integration', 'Enable nodejs apis in electron')
+  .alias('n', 'node-integration')
+
   .describe('help', 'Print help')
   .alias('h', 'help')
 
   .argv;
 
+argv.nodeIntegration = argv['node-integration']
 if (argv.help) return optimist.showHelp();
 
 process.stdin

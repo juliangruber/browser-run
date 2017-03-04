@@ -10,6 +10,7 @@ var launch = require('./lib/launch');
 var ecstatic = require('ecstatic');
 var injectScript = require('html-inject-script');
 var destroyable = require('server-destroy');
+var extend = require('xtend')
 
 try {
   fs.stat(__dirname + '/static/reporter.js')
@@ -95,7 +96,10 @@ function runner (opts) {
       if (!address) return; // already closed
       var port = address.port;
 
-      launch('http://localhost:' + port, opts.browser, function(err, _browser){
+      launch(extend(opts, {
+        loc: 'http://localhost:' + port,
+        name: opts.browser
+      }), function(err, _browser){
         if (err) return dpl.emit('error', err);
         browser = _browser;
 
