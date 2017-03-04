@@ -44,7 +44,7 @@ test('electron', function (t) {
     t.plan(2);
     var browser = run({
       browser: 'electron',
-      nodeIntegration: true,
+      node: true,
       basedir: __dirname + '/../'
     });
 

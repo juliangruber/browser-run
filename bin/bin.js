@@ -29,11 +29,10 @@ var argv = optimist
   .describe('input', 'Input type. Defaults to \'javascript\', can be set to \'html\'.')
   .alias('i', 'input')
 
-  .describe('node-integration', 'Enable nodejs apis in electron')
-  .alias('n', 'node-integration')
+  .describe('node', 'Enable nodejs apis in electron')
+  .alias('n', 'node')
 
   .describe('basedir', 'Set this if you need to require node modules in node mode')
-  .alias('b', 'basedir')
 
   .describe('help', 'Print help')
   .alias('h', 'help')
