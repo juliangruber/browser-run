@@ -19,7 +19,7 @@
     "browser-launcher": "^1.0.0",
     "duplexer": "^0.1.1",
     "ecstatic": "^2.0.0",
-    "electron-stream": "^4.0.0",
+    "electron-stream": "^5.0.0",
     "enstore": "^1.0.1",
     "html-inject-script": "^1.1.0",
     "optimist": "^0.6.1",
@@ -33,7 +33,6 @@
   "devDependencies": {
     "browserify": "^14.1.0",
     "concat-stream": "^1.5.1",
-    "electron-stream": "^5.0.0",
     "phantomjs-prebuilt-that-works": "^3.0.1",
     "tap": "^10.0.1",
     "tree-kill": "^1.0.0",
