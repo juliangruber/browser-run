@@ -82,6 +82,7 @@ function runner (opts) {
         return mockHandler(req, res);
     }
 
+    res.setHeader('content-type', 'text/html');
     res.end('not supported');
   });
   destroyable(server);
