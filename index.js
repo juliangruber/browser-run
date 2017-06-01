@@ -13,7 +13,7 @@ var destroyable = require('server-destroy');
 var extend = require('xtend')
 
 try {
-  fs.stat(__dirname + '/static/reporter.js')
+  fs.statSync(__dirname + '/static/reporter.js')
 } catch (_) {
   console.error('Reporter script missing. Run `make build` first.')
 }
