@@ -17,7 +17,10 @@
   }
 
   if (!/Phantom|Electron/.test(window.navigator.userAgent)) {
-    window.onerror = function (back, _, _, _, err) {
+    window.onerror = function (msg, file, line, column, err) {
+      if (err && msg.indexOf(err.stack) > -1) {
+        err.stack = err.stack + '\n  at ' + file + ':' + line + ':' + column
+      }
       console.error(err && err.stack
         || err
         || back);
