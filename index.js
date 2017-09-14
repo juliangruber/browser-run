@@ -10,7 +10,9 @@ var launch = require('./lib/launch');
 var ecstatic = require('ecstatic');
 var injectScript = require('html-inject-script');
 var destroyable = require('server-destroy');
-var extend = require('xtend')
+var extend = require('xtend');
+var injectCss = require('html-inject-css');
+var injectVdom = require('html-inject-vdom');
 
 try {
   fs.statSync(__dirname + '/static/reporter.js')
@@ -53,7 +55,15 @@ function runner (opts) {
       }
 
       if (req.url == '/') {
-        fs.createReadStream(__dirname + '/static/index.html').pipe(res);
+        if (opts.injectvdom) {
+          var vdom = injectVdom(opts.injectvdom);
+          vdom.pipe(res);
+        }
+        if (opts.injectcss) {
+          var css = injectCss(opts.injectcss);
+          css.pipe(opts.injectvdom ? vdom : res);
+        }
+        fs.createReadStream(__dirname + '/static/index.html').pipe(opts.injectcss ? css : opts.injectvdom ? vdom : res);
         return;
       }
     } else if (opts.input === 'html') {
