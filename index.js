@@ -13,6 +13,8 @@ var destroyable = require('server-destroy');
 var extend = require('xtend');
 var injectCss = require('html-inject-css');
 var injectVdom = require('html-inject-vdom');
+var smokestack = require('smokestack')
+var execSpawn = require('execspawn')
 
 try {
   fs.statSync(__dirname + '/static/reporter.js')
@@ -106,25 +108,44 @@ function runner (opts) {
       if (!address) return; // already closed
       var port = address.port;
 
-      launch(extend(opts, {
-        loc: 'http://localhost:' + port,
-        name: opts.browser,
-        bundle: bundle
-      }), function(err, _browser){
-        if (err) return dpl.emit('error', err);
-        browser = _browser;
+      if(opts.browser != 'chrome'){
 
-        // phantom, electron
-        if (browser.pipe) {
-          browser.setEncoding('utf8');
-          browser.pipe(output);
-        }
+        launch(extend(opts, {
+          loc: 'http://localhost:' + port,
+          name: opts.browser,
+          bundle: bundle
+        }), function(err, _browser){
+          if (err) return dpl.emit('error', err);
+          browser = _browser;
 
-        browser.on('exit', function (code, signal) {
+          // phantom, electron
+          if (browser.pipe) {
+            browser.setEncoding('utf8');
+            browser.pipe(output);
+          }
+
+          browser.on('exit', function (code, signal) {
+            try { server.destroy() } catch (e) {}
+            dpl.emit('exit', code, signal);
+          });
+        });
+
+      } else {
+
+        // use smokestack so we can pipe back to our output
+        var _smokestack = execSpawn('smokestack', {stdio: ['pipe', 'pipe', 'pipe'] });
+
+        bundle.createReadStream().pipe(_smokestack.stdin);
+
+        _smokestack.stdout.pipe(output);
+        _smokestack.stderr.pipe(output);
+
+        _smokestack.on('exit', function (code, signal) {
           try { server.destroy() } catch (e) {}
           dpl.emit('exit', code, signal);
         });
-      });
+
+      }
     });
   }
 
