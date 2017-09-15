@@ -108,7 +108,7 @@ function runner (opts) {
       if (!address) return; // already closed
       var port = address.port;
 
-      if(opts.browser != 'chrome'){
+      if(opts.browser != 'chrome' || opts.browser != 'firefox'){
 
         launch(extend(opts, {
           loc: 'http://localhost:' + port,
@@ -132,8 +132,8 @@ function runner (opts) {
 
       } else {
 
-        // use smokestack so we can pipe back to our output
-        var _smokestack = execSpawn('smokestack', {stdio: ['pipe', 'pipe', 'pipe'] });
+        // use smokestack for chrome and firefox so we can pipe back to output
+        var _smokestack = execSpawn('smokestack', {stdio: 'pipe'});
 
         bundle.createReadStream().pipe(_smokestack.stdin);
 

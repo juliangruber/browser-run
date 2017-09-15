@@ -1,7 +1,7 @@
 {
   "name": "browser-run",
   "description": "Transform stream that executes JavaScript it receives in a real browser and outputs console output",
-  "version": "4.0.5",
+  "version": "4.0.4",
   "repository": {
     "type": "git",
     "url": "git://github.com/juliangruber/browser-run.git"
@@ -21,12 +21,14 @@
     "ecstatic": "^2.0.0",
     "electron-stream": "^5.0.0",
     "enstore": "^1.0.1",
+    "execspawn": "^1.0.1",
     "html-inject-css": "0.0.3",
     "html-inject-script": "^1.1.0",
     "html-inject-vdom": "0.0.1",
     "optimist": "^0.6.1",
     "phantomjs-stream": "^1.1.1",
     "server-destroy": "^1.0.1",
+    "smokestack": "^3.4.1",
     "source-map-support": "^0.4.0",
     "through": "^2.3.8",
     "xhr-write-stream": "^0.1.2",
