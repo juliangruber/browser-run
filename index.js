@@ -55,15 +55,10 @@ function runner (opts) {
       }
 
       if (req.url == '/') {
-        if (opts.injectvdom) {
-          var vdom = injectVdom(opts.injectvdom);
-          vdom.pipe(res);
-        }
-        if (opts.injectcss) {
-          var css = injectCss(opts.injectcss);
-          css.pipe(opts.injectvdom ? vdom : res);
-        }
-        fs.createReadStream(__dirname + '/static/index.html').pipe(opts.injectcss ? css : opts.injectvdom ? vdom : res);
+        var stream = fs.createReadStream(__dirname + '/static/index.html');
+        if (opts.injectvdom) stream = stream.pipe(injectVdom(opts.injectvdom));
+        if (opts.injectcss) stream = stream.pipe(injectCss(opts.injectcss));
+        stream.pipe(res);
         return;
       }
     } else if (opts.input === 'html') {
@@ -118,6 +113,8 @@ function runner (opts) {
         if (browser.pipe) {
           browser.setEncoding('utf8');
           browser.pipe(output);
+        } else if(opts.browser == 'chrome'){
+          browser.stdout.pipe(output);
         }
 
         browser.on('exit', function (code, signal) {
