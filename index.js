@@ -13,8 +13,6 @@ var destroyable = require('server-destroy');
 var extend = require('xtend');
 var injectCss = require('html-inject-css');
 var injectVdom = require('html-inject-vdom');
-var smokestack = require('smokestack')
-var execSpawn = require('execspawn')
 
 try {
   fs.statSync(__dirname + '/static/reporter.js')
@@ -108,44 +106,25 @@ function runner (opts) {
       if (!address) return; // already closed
       var port = address.port;
 
-      if(opts.browser != 'chrome' || opts.browser != 'firefox'){
+      launch(extend(opts, {
+        loc: 'http://localhost:' + port,
+        name: opts.browser,
+        bundle: bundle
+      }), function(err, _browser){
+        if (err) return dpl.emit('error', err);
+        browser = _browser;
 
-        launch(extend(opts, {
-          loc: 'http://localhost:' + port,
-          name: opts.browser,
-          bundle: bundle
-        }), function(err, _browser){
-          if (err) return dpl.emit('error', err);
-          browser = _browser;
+        // phantom, electron
+        if (browser.pipe) {
+          browser.setEncoding('utf8');
+          browser.pipe(output);
+        }
 
-          // phantom, electron
-          if (browser.pipe) {
-            browser.setEncoding('utf8');
-            browser.pipe(output);
-          }
-
-          browser.on('exit', function (code, signal) {
-            try { server.destroy() } catch (e) {}
-            dpl.emit('exit', code, signal);
-          });
-        });
-
-      } else {
-
-        // use smokestack for chrome and firefox so we can pipe back to output
-        var _smokestack = execSpawn('smokestack', {stdio: 'pipe'});
-
-        bundle.createReadStream().pipe(_smokestack.stdin);
-
-        _smokestack.stdout.pipe(output);
-        _smokestack.stderr.pipe(output);
-
-        _smokestack.on('exit', function (code, signal) {
+        browser.on('exit', function (code, signal) {
           try { server.destroy() } catch (e) {}
           dpl.emit('exit', code, signal);
         });
-
-      }
+      });
     });
   }
 
