@@ -125,9 +125,7 @@ function runner (opts) {
 
   dpl.stop = function () {
     try { server.destroy(); } catch (e) {}
-    if(browser && browser.kill === 'function') browser.kill();
-    // properly shutdown firefox
-    else if(browser && browser.stop === 'function') browser.stop();
+    if(browser) browser.kill();
   };
 
   return dpl;
