@@ -10,7 +10,8 @@ var launch = require('./lib/launch');
 var ecstatic = require('ecstatic');
 var injectScript = require('html-inject-script');
 var destroyable = require('server-destroy');
-var extend = require('xtend')
+var extend = require('xtend');
+var injectCss = require('html-inject-css');
 
 try {
   fs.statSync(__dirname + '/static/reporter.js')
@@ -53,7 +54,9 @@ function runner (opts) {
       }
 
       if (req.url == '/') {
-        fs.createReadStream(__dirname + '/static/index.html').pipe(res);
+        var stream = fs.createReadStream(__dirname + '/static/index.html');
+        if (opts.injectcss) stream = stream.pipe(injectCss(opts.injectcss));
+        stream.pipe(res);
         return;
       }
     } else if (opts.input === 'html') {
@@ -108,6 +111,8 @@ function runner (opts) {
         if (browser.pipe) {
           browser.setEncoding('utf8');
           browser.pipe(output);
+        } else if(~['chrome', 'firefox'].indexOf(opts.browser)){
+          browser.stdout.pipe(output);
         }
 
         browser.on('exit', function (code, signal) {
@@ -120,7 +125,7 @@ function runner (opts) {
 
   dpl.stop = function () {
     try { server.destroy(); } catch (e) {}
-    if (browser) browser.kill();
+    if(browser) browser.kill();
   };
 
   return dpl;

@@ -51,7 +51,9 @@ Usage: browser-run [OPTIONS]
 Options:
   --browser, -b  Browser to use. Always available: electron. Available if installed: chrome, firefox, ie, phantom, safari  [default: "electron"]
   --port         Starts listening on that port and waits for you to open a browser                                       
-  --static       Serve static assets from this directory                                                                 
+  --static       Serve static assets from this directory
+  --injectcss    Inject stylesheet links to the html header
+  --injectvdom   Inject virtual DOM entry points to the html body                                                                 
   --mock         Path to code to handle requests for mocking a dynamic back-end                                          
   --input        Input type. Defaults to 'javascript', can be set to 'html'.                                             
   --node         Enable nodejs apis in electron                                                                          
