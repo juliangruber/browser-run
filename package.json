@@ -23,7 +23,6 @@
     "enstore": "^1.0.1",
     "html-inject-css": "0.0.3",
     "html-inject-script": "^1.1.0",
-    "html-inject-vdom": "0.0.1",
     "optimist": "^0.6.1",
     "phantomjs-stream": "^1.1.1",
     "server-destroy": "^1.0.1",
