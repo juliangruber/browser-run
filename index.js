@@ -43,7 +43,6 @@ function runner (opts) {
   var mockHandler = opts.mock && require(path.resolve('./', opts.mock))
 
   var server = http.createServer(function (req, res) {
-
     if (opts.input === 'javascript') {
       if (/^\/bundle\.js/.test(req.url)) {
         res.setHeader('content-type', 'application/javascript');
