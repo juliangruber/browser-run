@@ -60,5 +60,23 @@ test('electron', function (t) {
     browser.write('window.close();');
     browser.end();
   });
+  t.test('supports async functions', function (t) {
+    t.plan(2);
+    var browser = run({
+      browser: 'electron'
+    });
+
+    browser.pipe(concat(function(data){
+      t.equal(data.toString(), 'ok\n');
+    }));
+
+    browser.on('exit', function (code) {
+      t.equal(code, 0, 'exit');
+    });
+
+    browser.write('const fn = async () => \'ok\';');
+    browser.write('fn().then(text => { console.log(text); window.close(); })');
+    browser.end();
+  });
   t.end();
 });
