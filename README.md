@@ -55,6 +55,7 @@ Options:
   --mock         Path to code to handle requests for mocking a dynamic back-end                                          
   --input        Input type. Defaults to 'javascript', can be set to 'html'.                                             
   --node         Enable nodejs apis in electron                                                                          
+  --show         Show browser window if browser is electron                                                              
   --basedir      Set this if you need to require node modules in node mode                                               
   --help         Print help 
 ```
@@ -98,6 +99,7 @@ Returns a duplex stream and starts a webserver.
 * `mock`: Path to code to handle requests for mocking a dynamic back-end
 * `input`: Input type. Defaults to `javascript`, can be set to `html`.
 * `node`: Enable nodejs integration in electron
+* `show`: Show browser window if browser is electron
 * `basedir`: Set this if you need to require node modules in `node` mode
 
 If only an empty string is written to it, an error will be thrown as there is nothing to execute.
