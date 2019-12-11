@@ -110,7 +110,30 @@ Stop the underlying webserver.
 
 ## Headless testing
 
-To use the default electron browser on travis, add this to your travis.yml:
+In environments without a screen, you can use `Xvfb` to simulate one.
+
+### GitHub Actions
+
+This is a full example to run `npm test`. Refer to the last 2 lines in the YAML config:
+
+```yml
+on:
+  - pull_request
+  - push
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - run: npm install
+    - run: sudo apt-get install xvfb
+    - run: xvfb-run --auto-servernum npm test
+```
+
+### Travis
+
+Add this to your travis.yml:
 
 ```yml
 addons:
@@ -123,9 +146,9 @@ install:
   - npm install
 ```
 
-[Source](https://github.com/rhysd/Shiba/blob/055a11a0a2b4f727577fe61371a88d8db9277de5/.travis.yml).
+[Full example](https://github.com/rhysd/Shiba/blob/055a11a0a2b4f727577fe61371a88d8db9277de5/.travis.yml).
 
-For gnu/linux installations without a graphical environment:
+### Any gnu/linux box
 
 ```bash
 $ sudo apt-get install xvfb # or equivalent
@@ -134,7 +157,9 @@ $ Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
 $ browser-run ...
 ```
 
-There is also an example docker machine [here](https://github.com/fraserxu/docker-tape-run).
+### Docker
+
+There is also an example [Docker image](https://hub.docker.com/r/kipparker/docker-tape-run). [Source](https://github.com/fraserxu/docker-tape-run)
 
 ## Installation
 
