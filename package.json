@@ -16,7 +16,7 @@
     "test": "make test"
   },
   "dependencies": {
-    "browser-launcher": "github:substack/browser-launcher",
+    "browser-launcher": "git+https://github.com/substack/browser-launcher.git#603e1ea",
     "duplexer": "^0.1.1",
     "ecstatic": "^4.1.2",
     "electron-stream": "^7.0.1",
