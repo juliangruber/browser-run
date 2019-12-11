@@ -23,7 +23,6 @@
     "enstore": "^1.0.1",
     "html-inject-script": "^1.1.0",
     "optimist": "^0.6.1",
-    "phantomjs-stream": "^1.1.1",
     "server-destroy": "^1.0.1",
     "source-map-support": "^0.4.0",
     "through": "^2.3.8",
@@ -33,7 +32,6 @@
   "devDependencies": {
     "browserify": "^14.1.0",
     "concat-stream": "^1.5.1",
-    "phantomjs-prebuilt-that-works": "^3.0.1",
     "tap": "^10.0.1",
     "tree-kill": "^1.0.0",
     "utf8-stream": "^0.0.0"
@@ -41,7 +39,6 @@
   "keywords": [
     "browser",
     "stream",
-    "phantomjs",
     "test",
     "headless",
     "duplex"
