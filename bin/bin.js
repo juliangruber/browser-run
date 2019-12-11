@@ -32,6 +32,9 @@ var argv = optimist
   .describe('node', 'Enable nodejs apis in electron')
   .alias('n', 'node')
 
+  .describe('show', 'Show browser window if browser is electron')
+  .alias('w', 'show')
+
   .describe('basedir', 'Set this if you need to require node modules in node mode')
 
   .describe('help', 'Print help')
