@@ -103,7 +103,7 @@ function runner (opts) {
         if (err) return dpl.emit('error', err);
         browser = _browser;
 
-        // phantom, electron
+        // electron
         if (browser.pipe) {
           browser.setEncoding('utf8');
           browser.pipe(output);
