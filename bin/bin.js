@@ -13,7 +13,7 @@ var argv = optimist
   .describe('browser', 'Browser to use. '
       + 'Always available: electron. '
       + 'Available if installed: '
-      + 'chrome, firefox, ie, phantom, safari')
+      + 'chrome, firefox, ie, safari')
   .alias('browser', 'b')
   .default('browser', 'electron')
 
