@@ -1,7 +1,7 @@
 {
   "name": "browser-run",
   "description": "Transform stream that executes JavaScript it receives in a real browser and outputs console output",
-  "version": "7.0.0",
+  "version": "7.0.1",
   "repository": {
     "type": "git",
     "url": "git://github.com/juliangruber/browser-run.git"
