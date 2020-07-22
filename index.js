@@ -15,7 +15,7 @@ var extend = require('xtend')
 try {
   fs.statSync(__dirname + '/static/reporter.js')
 } catch (_) {
-  console.error('Reporter script missing. Run `make build` first.')
+  console.error('Reporter script missing. Run `npm run build` first.')
 }
 
 module.exports = function (opts) {
