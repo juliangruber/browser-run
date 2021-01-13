@@ -1,7 +1,8 @@
 #!/usr/bin/env node
-
+var yargs = require('yargs/yargs')
 var run = require('..');
-var argv = require('yargs/yargs')(process.argv.slice(2))
+
+var argv = yargs(process.argv.slice(2))
   .usage(
     'Run JavaScript in a browser.\n' +
     'Write code to stdin and receive console output on stdout.\n' +
