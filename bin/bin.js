@@ -1,9 +1,7 @@
 #!/usr/bin/env node
 
 var run = require('..');
-var optimist = require('optimist');
-
-var argv = optimist
+var argv = require('yargs/yargs')(process.argv.slice(2))
   .usage(
     'Run JavaScript in a browser.\n' +
     'Write code to stdin and receive console output on stdout.\n' +
@@ -34,13 +32,13 @@ var argv = optimist
 
   .describe('basedir', 'Set this if you need to require node modules in node mode')
 
+  .help('h')
   .describe('help', 'Print help')
   .alias('h', 'help')
 
   .argv;
 
 argv.nodeIntegration = argv['node-integration']
-if (argv.help) return optimist.showHelp();
 
 process.stdin
   .pipe(run(argv))
