@@ -1,3 +1,5 @@
 *.sw*
 node_modules
 static/reporter.js
+.nyc_output/
+package-lock.json
