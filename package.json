@@ -18,10 +18,10 @@
     "test": "npm run build && tap test/*.js"
   },
   "dependencies": {
-    "browser-launcher": "^2.0.0",
+    "browser-launcher": "git://github.com/fanatid/browser-launcher.git#426b9a791f855050b114a411d61b21cbd8e9f901",
     "duplexer": "^0.1.1",
     "ecstatic": "^4.1.2",
-    "electron-stream": "^8.0.0",
+    "electron-stream": "git://github.com/fanatid/electron-stream.git#01e9358e6c43d41381c446c3db58059ad1158998",
     "enstore": "^1.0.1",
     "html-inject-script": "^2.0.0",
     "server-destroy": "^1.0.1",
