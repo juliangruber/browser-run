@@ -49,14 +49,18 @@ Write code to stdin and receive console output on stdout.
 Usage: browser-run [OPTIONS]
 
 Options:
-  --browser, -b  Browser to use. Always available: electron. Available if installed: chrome, firefox, ie, safari  [default: "electron"]
-  --port         Starts listening on that port and waits for you to open a browser
-  --static       Serve static assets from this directory
-  --mock         Path to code to handle requests for mocking a dynamic back-end
-  --input        Input type. Defaults to 'javascript', can be set to 'html'.
-  --node         Enable nodejs apis in electron
-  --basedir      Set this if you need to require node modules in node mode
-  --help         Print help
+      --version  Show version number                                   [boolean]
+  -b, --browser  Browser to use. Always available: electron. Available if
+                 installed: chrome, firefox, ie, safari    [default: "electron"]
+      --sandbox  Enable electron sandbox               [boolean] [default: true]
+      --basedir  Set this if you need to require node modules in node mode
+  -h, --help     Print help                                            [boolean]
+  -p, --port     Starts listening on that port and waits for you to open a
+                 browser
+  -s, --static   Serve static assets from this directory
+  -m, --mock     Path to code to handle requests for mocking a dynamic back-end
+  -i, --input    Input type. Defaults to 'javascript', can be set to 'html'.
+  -n, --node     Enable nodejs apis in electron
 ```
 
 ## Custom html file
@@ -97,6 +101,7 @@ Returns a duplex stream and starts a webserver.
 * `mock`: Path to code to handle requests for mocking a dynamic back-end
 * `input`: Input type. Defaults to `javascript`, can be set to `html`.
 * `node`: Enable nodejs integration in electron
+* `sandbox`: Enable electron sandbox. Default: `true`.
 * `basedir`: Set this if you need to require node modules in `node` mode
 
 If only an empty string is written to it, an error will be thrown as there is nothing to execute.

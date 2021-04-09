@@ -32,6 +32,10 @@ var argv = yargs(process.argv.slice(2))
   .describe('node', 'Enable nodejs apis in electron')
   .alias('n', 'node')
 
+  .describe('sandbox', 'Enable electron sandbox')
+  .boolean('sandbox')
+  .default('sandbox', true)
+
   .describe('basedir', 'Set this if you need to require node modules in node mode')
 
   .help('h')
