@@ -24,7 +24,7 @@ test('electron', async function (t) {
     browser.write('window.close();');
     browser.end();
   });
-  await t.test('nodeIntegration on', function (t, done) {
+  await t.test('nodeIntegration on', function (t) {
     var browser = run({
       browser: 'electron',
       nodeIntegration: true
@@ -45,7 +45,7 @@ test('electron', async function (t) {
     browser.write('window.close();');
     browser.end();
   });
-  await t.test('basedir option', function (t, done) {
+  await t.test('basedir option', function (t) {
     var browser = run({
       browser: 'electron',
       node: true,
@@ -63,11 +63,11 @@ test('electron', async function (t) {
       if (++eventCount === 2) done();
     });
 
-    browser.write('console.log(!!require.resolve("xtend"));');
+    browser.write('console.log(!!require.resolve("tap"));');
     browser.write('window.close();');
     browser.end();
   });
-  await t.test('supports async functions', function (t, done) {
+  await t.test('supports async functions', function (t) {
     var browser = run({
       browser: 'electron'
     });
