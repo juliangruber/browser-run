@@ -1,13 +1,14 @@
-var test = require('tap').test;
+var test = require('node-core-test');
+var assert = require('assert');
 var run = require('..');
 
-test('stream', function (t) {
+test('stream', function (t, done) {
   var browser = run();
 
   browser.on('data', function (data) {
     browser.stop();
-    t.equal(data, 'foo\n', 'correct stdout');
-    t.end();
+    assert.strictEqual(data, 'foo\n', 'correct stdout');
+    done();
   });
 
   browser.end('console.log("foo")');
