@@ -1,17 +1,20 @@
-var test = require('tap').test;
+var test = require('node-core-test');
+var assert = require('assert');
 var run = require('..');
 var concat = require('concat-stream');
 
-test('input=javascript (default)', function (t) {
-  t.plan(2);
+test('input=javascript (default)', function (t, done) {
   var browser = run();
+  let eventCount = 0;
 
   browser.pipe(concat(function(data){
-    t.equal('\n', data.toString());
+    assert.strictEqual('\n', data.toString());
+    if (++eventCount === 2) done();
   }));
 
   browser.on('exit', function (code) {
-    t.equal(code, 0, 'exit');
+    assert.strictEqual(code, 0, 'exit');
+    if (++eventCount === 2) done();
   });
 
   browser.write('console.log(document.title);');
@@ -19,18 +22,20 @@ test('input=javascript (default)', function (t) {
   browser.end();
 });
 
-test('input=html', function (t) {
-  t.plan(2);
+test('input=html', function (t, done) {
   var browser = run({
     input: 'html'
   });
+  let eventCount = 0;
 
   browser.pipe(concat(function(data){
-    t.equal('FOO\n', data.toString());
+    assert.strictEqual('FOO\n', data.toString());
+    if (++eventCount === 2) done();
   }));
 
   browser.on('exit', function (code) {
-    t.equal(code, 0, 'exit');
+    assert.strictEqual(code, 0, 'exit');
+    if (++eventCount === 2) done();
   });
 
   browser.write('<title>FOO</title>');

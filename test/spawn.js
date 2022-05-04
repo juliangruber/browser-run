@@ -1,16 +1,17 @@
-var test = require('tap').test;
+var test = require('node-core-test');
+var assert = require('assert');
 var spawn = require('child_process').spawn;
 var kill = require('tree-kill');
 
-test('spawn', function (t) {
+test('spawn', function (t, done) {
   var ps = spawn(__dirname + '/../bin/bin.js');
   
   ps.stdout.on('data', function (data) {
-    t.equal(data.toString(), 'foo\n');
+    assert.strictEqual(data.toString(), 'foo\n');
     kill(ps.pid);
-    t.end();
+    done();
   });
-  ps.stderr.on('data', t.notOk.bind(t));
+  ps.stderr.on('data', d => { throw new Error(d.toString()) });
 
   ps.stdin.write('console.log("foo");');
   ps.stdin.end();

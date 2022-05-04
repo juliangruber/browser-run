@@ -1,82 +1,90 @@
-var test = require('tap').test;
+var test = require('node-core-test');
+var assert = require('assert');
 var run = require('..');
 var concat = require('concat-stream');
 
-test('electron', function (t) {
-  t.test('nodeIntegration off by default', function (t) {
-    t.plan(2);
+test('electron', async function (t) {
+  await t.test('nodeIntegration off by default', function (t, done) {
     var browser = run({
       browser: 'electron'
     });
+    let eventCount = 0;
 
     browser.pipe(concat(function(data){
-      t.notOk(/electron\.asar/.test(data.toString()));
+      assert(!/electron\.asar/.test(data.toString()));
+      if (++eventCount === 2) done();
     }));
 
     browser.on('exit', function (code) {
-      t.equal(code, 0, 'exit');
+      assert.strictEqual(code, 0, 'exit');
+      if (++eventCount === 2) done();
     });
 
     browser.write('console.log(__dirname);');
     browser.write('window.close();');
     browser.end();
   });
-  t.test('nodeIntegration on', function (t) {
-    t.plan(2);
+  await t.test('nodeIntegration on', function (t) {
     var browser = run({
       browser: 'electron',
       nodeIntegration: true
     });
+    let eventCount = 0;
 
     browser.pipe(concat(function(data){
-      t.ok(/browser-run/.test(data.toString()));
+      assert(/browser-run/.test(data.toString()));
+      if (++eventCount === 2) done();
     }));
 
     browser.on('exit', function (code) {
-      t.equal(code, 0, 'exit');
+      assert.strictEqual(code, 0, 'exit');
+      if (++eventCount === 2) done();
     });
 
     browser.write('console.log(__dirname);');
     browser.write('window.close();');
     browser.end();
   });
-  t.test('basedir option', function (t) {
-    t.plan(2);
+  await t.test('basedir option', function (t) {
     var browser = run({
       browser: 'electron',
       node: true,
       basedir: __dirname + '/../'
     });
+    let eventCount = 0;
 
     browser.pipe(concat(function(data){
-      t.ok(/^true\n$/.test(data.toString()));
+      assert(/^true\n$/.test(data.toString()));
+      if (++eventCount === 2) done();
     }));
 
     browser.on('exit', function (code) {
-      t.equal(code, 0, 'exit');
+      assert.strictEqual(code, 0, 'exit');
+      if (++eventCount === 2) done();
     });
 
     browser.write('console.log(!!require.resolve("tap"));');
     browser.write('window.close();');
     browser.end();
   });
-  t.test('supports async functions', function (t) {
-    t.plan(2);
+  await t.test('supports async functions', function (t) {
     var browser = run({
       browser: 'electron'
     });
+    let eventCount = 0;
 
     browser.pipe(concat(function(data){
-      t.equal(data.toString(), 'ok\n');
+      assert.strictEqual(data.toString(), 'ok\n');
+      if (++eventCount === 2) done();
     }));
 
     browser.on('exit', function (code) {
-      t.equal(code, 0, 'exit');
+      assert.strictEqual(code, 0, 'exit');
+      if (++eventCount === 2) done();
     });
 
     browser.write('const fn = async () => \'ok\';');
     browser.write('fn().then(text => { console.log(text); window.close(); })');
     browser.end();
   });
-  t.end();
 });

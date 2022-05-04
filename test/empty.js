@@ -1,17 +1,18 @@
-var test = require('tap').test;
+var test = require('node-core-test');
+var assert = require('assert');
 var run = require('..');
 
-test('empty', function (t) {
+test('empty', function (t, done) {
   var browser = run();
 
   browser.on('data', function (data) {
-    t.fail(data.toString());
+    throw new Error(data.toString());
   });
 
   browser.on('error', function (err) {
     browser.stop();
-    t.ok(err);
-    t.end();
+    assert(err);
+    done();
   });
 
   browser.write('  ');

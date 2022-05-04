@@ -1,12 +1,13 @@
-var test = require('tap').test;
+var test = require('node-core-test');
+var assert = require('assert');
 var run = require('..');
 
-test('error', function (t) {
+test('error', function (t, done) {
   var browser = run({ browser: 'foobar' });
 
   browser.on('error', function (err) {
     browser.stop();
-    t.ok(err);
-    t.end();
+    assert(err);
+    done();
   });
 });
