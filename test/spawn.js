@@ -1,4 +1,4 @@
-var test = require('node-core-test');
+var test = require('test');
 var assert = require('assert');
 var spawn = require('child_process').spawn;
 var kill = require('tree-kill');
