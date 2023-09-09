@@ -34,7 +34,7 @@
   "devDependencies": {
     "browserify": "^14.1.0",
     "concat-stream": "^1.5.1",
-    "np": "^6.2.3",
+    "np": "^8.0.4",
     "test": "^3.0.0",
     "tree-kill": "^1.0.0",
     "utf8-stream": "^0.0.0"
