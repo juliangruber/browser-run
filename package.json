@@ -21,7 +21,7 @@
     "browser-launcher": "^3.0.1",
     "duplexer": "^0.1.1",
     "ecstatic": "^4.1.2",
-    "electron-stream": "^9.1.0",
+    "electron-stream": "^11.0.0",
     "enstore": "^1.0.1",
     "html-inject-script": "^2.0.0",
     "server-destroy": "^1.0.1",
