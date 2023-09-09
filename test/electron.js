@@ -63,7 +63,7 @@ test('electron', async function (t) {
       if (++eventCount === 2) done();
     });
 
-    browser.write('console.log(!!require.resolve("tap"));');
+    browser.write('console.log(!!require.resolve("test"));');
     browser.write('window.close();');
     browser.end();
   });
