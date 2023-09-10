@@ -131,7 +131,6 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - run: npm install
-    - run: sudo apt-get install xvfb
     - run: xvfb-run npm test
       timeout-minutes: 5 # If the tests fails, the browser will hang open indefinitely
 ```
