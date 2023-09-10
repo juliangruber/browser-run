@@ -129,10 +129,10 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v4
     - run: npm install
-    - run: sudo apt-get install xvfb
-    - run: xvfb-run --auto-servernum npm test
+    - run: xvfb-run npm test
+      timeout-minutes: 5 # If the tests fails, the browser will hang open indefinitely
 ```
 
 ### Travis
